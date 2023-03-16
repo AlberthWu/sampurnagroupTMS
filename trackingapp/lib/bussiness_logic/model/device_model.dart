@@ -1,6 +1,32 @@
 import 'package:trackingapp/utils/utils.dart';
 
-class ItemsModel {
+class DeviceModel {
+  late int? id;
+  late String? title, error;
+  late List<Items> items;
+
+  DeviceModel(this.id, this.title, this.items);
+
+  DeviceModel.withError(String errorMessage) {
+    error = errorMessage;
+  }
+
+  DeviceModel.fromJSON(JSON json) {
+    id = json['id'];
+    title = json['title'];
+    items = json['items'] == null
+        ? []
+        : (json['items'] as List).map((e) => Items.fromJSON(e)).toList();
+  }
+
+  JSON get toJSON => {
+        'id': id,
+        'title': title,
+        'items': items,
+      };
+}
+
+class Items {
   late int id, alarm, course, speed, altitude, stopDurationSec, movedTimestamp;
   late String name,
       online,
@@ -18,14 +44,15 @@ class ItemsModel {
       stopDuration,
       detectEngine,
       engineHours;
-  late double lat, lng, totalDistance;
+  late dynamic totalDistance;
+  late double lat, lng;
   late IconColors iconColors;
   late Icons icon;
   late DriverData driverData;
   late List<Sensors> sensors;
   late List<Tail> tail;
 
-  ItemsModel(
+  Items(
       this.id,
       this.alarm,
       this.course,
@@ -58,7 +85,7 @@ class ItemsModel {
       this.sensors,
       this.tail);
 
-  ItemsModel.fromJSON(JSON json) {
+  Items.fromJSON(JSON json) {
     id = json['id'];
     alarm = json['alarm'];
     course = json['course'];
@@ -117,8 +144,8 @@ class IconColors {
 }
 
 class Icons {
-  late int id, userId, order, width, heigth, byStatus;
-  late String type, path;
+  late int? id, order, width, heigth, byStatus;
+  late String? userId, type, path;
 
   Icons(this.id, this.userId, this.order, this.width, this.heigth,
       this.byStatus, this.type, this.path);
@@ -181,9 +208,9 @@ class DriverData {
 }
 
 class Sensors {
-  late int id, showInPopup, scaleValue;
+  late int? id, showInPopup, scaleValue;
   late String type, name, value;
-  late bool val;
+  late dynamic val;
 
   Sensors(this.id, this.showInPopup, this.scaleValue, this.type, this.name,
       this.value, this.val);
@@ -210,7 +237,7 @@ class Sensors {
 }
 
 class Tail {
-  late bool lat, lng;
+  late String lat, lng;
 
   Tail(this.lat, this.lng);
 
@@ -222,6 +249,160 @@ class Tail {
   JSON get toJSON => {'lat': lat, 'lng': lng};
 }
 
-// class DeviceData {
-//   late int id, userId, currentDriverId, traccarDeviceId, iconId, active, deleted, fuelMeasurementId, tailLength, minMovingSpeed, minFuelFillings, minFuelThefts, snapToRoad, gprsTemplates
-// }
+class DeviceData {
+  late int id,
+      userId,
+      currentDriverId,
+      traccarDeviceId,
+      iconId,
+      active,
+      deleted,
+      fuelMeasurementId,
+      tailLength,
+      minMovingSpeed,
+      minFuelFillings,
+      minFuelThefts,
+      snapToRoad,
+      gprsTemplatesOnly,
+      validByAvgSpeed,
+      appTrackerLogin,
+      groupId,
+      course,
+      speed;
+  late String name,
+      imei,
+      fuelQuantity,
+      fuelPrice,
+      fuelPerKm,
+      fuelPerH,
+      simNumber,
+      deviceModel,
+      plateNumber,
+      vin,
+      registrationNumber,
+      objectOwner,
+      additionalNotes,
+      simActivationDate,
+      installationDate,
+      tailColor,
+      engineHours,
+      detectEngine,
+      detectSpeed,
+      createdAt,
+      updatedAt,
+      iconType,
+      time;
+  late bool lastValidLatitude, lastValidLongitude;
+  late List<String> parameters;
+  late IconColors iconColors;
+  late List<Users> users;
+  late Pivot pivot;
+  late Icons icon;
+}
+
+class Users {
+  late String id, email;
+
+  Users(this.id, this.email);
+
+  Users.fromJSON(JSON json) {
+    id = json['id'];
+    email = json['email'];
+  }
+
+  JSON get toJSON => {'id': id, 'email': email};
+}
+
+class Pivot {
+  late int userId, deviceId, groupId, currentDriverId, active, timezoneId;
+
+  Pivot(this.userId, this.deviceId, this.groupId, this.currentDriverId,
+      this.active, this.timezoneId);
+
+  Pivot.fromJSON(JSON json) {
+    userId = json['user_id'];
+    deviceId = json['device_id'];
+    groupId = json['group_id'];
+    currentDriverId = json['current_driver_id'];
+    active = json['active'];
+    timezoneId = json['timezone_id'];
+  }
+
+  JSON get toJSON => {
+        'user_id': userId,
+        'device_id': deviceId,
+        'group_id': groupId,
+        'current_driver_id': currentDriverId,
+        'active': active,
+        'timezone_id': timezoneId,
+      };
+}
+
+class Traccar {
+  late int id, latestPositionId, altitude, course, databaseId;
+  late String name,
+      uniqueId,
+      other,
+      speed,
+      time,
+      deviceTime,
+      serverTime,
+      actTime,
+      protocol,
+      latestPosition,
+      movedAt,
+      stopedAt,
+      engineOnAt,
+      engineOffAt,
+      engineChangedAt;
+  late bool lastValidLatitude, lastValidLongitude;
+
+  Traccar(
+      this.id,
+      this.latestPositionId,
+      this.altitude,
+      this.course,
+      this.databaseId,
+      this.name,
+      this.uniqueId,
+      this.other,
+      this.speed,
+      this.time,
+      this.deviceTime,
+      this.serverTime,
+      this.actTime,
+      this.protocol,
+      this.latestPosition,
+      this.movedAt,
+      this.stopedAt,
+      this.engineOnAt,
+      this.engineOffAt,
+      this.engineChangedAt,
+      this.lastValidLatitude,
+      this.lastValidLongitude);
+
+  Traccar.fromJSON(JSON json) {
+    id = json['id'];
+    latestPositionId = json['latestPosition_id'];
+    altitude = json['altitude'];
+    course = json['course'];
+    databaseId = json['database_id'];
+    name = json['name'];
+    uniqueId = json['uniqueId'];
+    other = json['other'];
+    speed = json['speed'];
+    time = json['time'];
+    deviceTime = json['device_time'];
+    serverTime = json['server_time'];
+    actTime = json['ack_time'];
+    protocol = json['protocol'];
+    latestPosition = json['latest_positions'];
+    movedAt = json['moved_at'];
+    stopedAt = json['stopped_at'];
+    engineOnAt = json['engine_on_at'];
+    engineOffAt = json['engine_off_at'];
+    engineChangedAt = json['engine_change_at'];
+    lastValidLatitude = json['lastValidLatitude'];
+    lastValidLongitude = json['lastValidLongitude'];
+  }
+}
