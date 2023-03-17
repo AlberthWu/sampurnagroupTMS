@@ -45,12 +45,14 @@ class Items {
       detectEngine,
       engineHours;
   late dynamic totalDistance;
+  late bool? engineStatus;
   late double lat, lng;
   late IconColors iconColors;
-  late Icons icon;
+  late Iconss icon;
   late DriverData driverData;
   late List<Sensors> sensors;
   late List<Tail> tail;
+  late List<Services> services;
 
   Items(
       this.id,
@@ -79,11 +81,13 @@ class Items {
       this.lat,
       this.lng,
       this.totalDistance,
+      this.engineStatus,
       this.iconColors,
       this.icon,
       this.driverData,
       this.sensors,
-      this.tail);
+      this.tail,
+      this.services);
 
   Items.fromJSON(JSON json) {
     id = json['id'];
@@ -106,13 +110,14 @@ class Items {
     unitOfAlititude = json['unit_of_altitude'];
     unitofCapacity = json['unit_of_capacity'];
     stopDuration = json['stop_duration'];
+    engineStatus = json['engine_status'];
     detectEngine = json['detect_engine'];
     engineHours = json['engine_hours'];
     lat = json['lat'];
     lng = json['lng'];
     totalDistance = json['total_distance'];
     iconColors = IconColors.fromJSON(json['icon_colors']);
-    icon = Icons.fromJSON(json['icon']);
+    icon = Iconss.fromJSON(json['icon']);
     driverData = DriverData.fromJSON(json['driver_data']);
     sensors = json['sensors'] == null
         ? []
@@ -120,6 +125,9 @@ class Items {
     tail = json['tail'] == null
         ? []
         : (json['tail'] as List).map((e) => Tail.fromJSON(e)).toList();
+    services = json['services'] == null
+        ? []
+        : (json['services'] as List).map((e) => Services.fromJSON(e)).toList();
   }
 }
 
@@ -143,14 +151,14 @@ class IconColors {
       };
 }
 
-class Icons {
+class Iconss {
   late int? id, order, width, heigth, byStatus;
   late String? userId, type, path;
 
-  Icons(this.id, this.userId, this.order, this.width, this.heigth,
+  Iconss(this.id, this.userId, this.order, this.width, this.heigth,
       this.byStatus, this.type, this.path);
 
-  Icons.fromJSON(JSON json) {
+  Iconss.fromJSON(JSON json) {
     id = json['id'];
     userId = json['user_id'];
     order = json['order'];
@@ -249,6 +257,20 @@ class Tail {
   JSON get toJSON => {'lat': lat, 'lng': lng};
 }
 
+class Services {
+  late int id;
+  late String name;
+
+  Services(this.id, this.name);
+
+  Services.fromJSON(JSON json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  JSON get toJSON => {'id': id, 'name': name};
+}
+
 class DeviceData {
   late int id,
       userId,
@@ -297,7 +319,7 @@ class DeviceData {
   late IconColors iconColors;
   late List<Users> users;
   late Pivot pivot;
-  late Icons icon;
+  late Iconss icon;
 }
 
 class Users {
