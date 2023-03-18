@@ -2,13 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/api/devices/device_profider.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
-import 'package:trackingapp/bussiness_logic/services/device/device.helper.dart';
+import 'package:trackingapp/bussiness_logic/services/device/device_helper.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_repository.dart';
 
 class DeviceController extends GetxController {
-  late RxList<DeviceModel> listDevice = RxList();
-  final DeviceProvider deviceProvider = Get.find();
-  var isLoading = true.obs;
+  final RxList<DeviceModel> listDevice = RxList();
+  // final DeviceProvider deviceProvider = Get.find();
+  var isLoading = false.obs;
   var isError = false.obs;
   var errmsg = "".obs;
   final updating = false.obs;
@@ -37,9 +37,10 @@ class DeviceController extends GetxController {
   // }
 
   Future deviceList() async {
-    isLoading(true);
+    isLoading(false);
     try {
-      final result = await DeviceApi().getData(ApiConst.path);
+      isLoading(true);
+      final result = await DeviceApi().getData(DeviceApiConst.path);
       isLoading(false);
       isError(false);
       // updating(true);

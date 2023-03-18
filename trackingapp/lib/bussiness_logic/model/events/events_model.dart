@@ -1,7 +1,40 @@
 import 'package:trackingapp/utils/utils.dart';
 
+class EventsModel {
+  late int status;
+  late ItemEvents itemEvents;
+
+  EventsModel(this.status, this.itemEvents);
+
+  EventsModel.fromJSON(JSON json) {
+    status = json['status'];
+    itemEvents = ItemEvents.fromJSON(json['items']);
+  }
+
+  JSON get toJSON => {'status': status, 'items': itemEvents};
+}
+
+class ItemEvents {
+  late int total;
+  late List<DataEvents> dataEvents;
+
+  ItemEvents(this.dataEvents, this.total);
+
+  ItemEvents.fromJSON(JSON json) {
+    total = json['total'];
+    dataEvents = json['data'] == null
+        ? []
+        : (json['data'] as List).map((e) => DataEvents.fromJSON(e)).toList();
+  }
+
+  JSON get toJSON => {
+        'total': total,
+        'data': dataEvents,
+      };
+}
+
 class DataEvents {
-  late int id,
+  late int? id,
       userId,
       deviceId,
       geofenceId,
@@ -11,7 +44,7 @@ class DataEvents {
       course,
       speed,
       deleted;
-  late String type,
+  late String? type,
       message,
       address,
       time,
@@ -20,9 +53,9 @@ class DataEvents {
       name,
       detail,
       deviceName;
-  late bool latitude, longitude;
-  late GeofenceEvent geofenceEvent;
-  late AdditionalEvent additionalEvent;
+  late double? latitude, longitude;
+  late GeofenceEvent? geofenceEvent;
+  late AdditionalEvent? additionalEvent;
 
   DataEvents(
       this.id,
@@ -35,7 +68,7 @@ class DataEvents {
       this.detail,
       this.deviceId,
       this.deviceName,
-      this.geofenceEvent,
+      // this.geofenceEvent,
       this.geofenceId,
       this.latitude,
       this.longitude,
@@ -51,7 +84,9 @@ class DataEvents {
 
   DataEvents.fromJSON(JSON json) {
     id = json['id'];
-    additionalEvent = json['additional'];
+    additionalEvent = json['additional'] == null
+        ? null
+        : AdditionalEvent.fromJSON(json['additional']);
     address = json['address'];
     altitude = json['altitude'];
     course = json['course'];
@@ -60,7 +95,8 @@ class DataEvents {
     detail = json['detail'];
     deviceId = json['device_id'];
     deviceName = json['device_name'];
-    geofenceEvent = json['geofence'];
+    // geofenceEvent =
+    //     json['geofence'] ? null : GeofenceEvent.fromJSON(json['geofence']);
     geofenceId = json['geofence_id'];
     latitude = json['latitude'];
     longitude = json['longitude'];
@@ -77,28 +113,28 @@ class DataEvents {
 
   JSON get toJSON => {
         'id': id,
-        'additio': additionalEvent,
-        '': address,
-        '': altitude,
-        '': course,
-        '': createdAt,
-        '': deleted,
-        '': detail,
-        '': deviceId,
-        '': deviceName,
-        '': geofenceEvent,
-        '': geofenceId,
-        '': latitude,
-        '': longitude,
-        '': message,
-        '': name,
-        '': poiId,
-        '': positionId,
-        '': speed,
-        '': time,
-        '': type,
-        '': updatedAt,
-        '': userId,
+        'additional': additionalEvent,
+        'address': address,
+        'altitude': altitude,
+        'course': course,
+        'created_at': createdAt,
+        'deleted': deleted,
+        'detail': detail,
+        'device_id': deviceId,
+        'device_name': deviceName,
+        'geofence': geofenceEvent,
+        'geofence_id': geofenceId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'message': message,
+        'name': name,
+        'poi_id': poiId,
+        'position_id': positionId,
+        'speed': speed,
+        'time': time,
+        'type': type,
+        'updated_at': updatedAt,
+        'user_id': userId,
       };
 }
 

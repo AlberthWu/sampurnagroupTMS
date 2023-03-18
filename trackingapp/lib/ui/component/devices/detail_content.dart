@@ -5,6 +5,7 @@ import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 import 'package:trackingapp/ui/component/devices/detail.dart';
 import 'package:trackingapp/ui/component/devices/general_info.dart';
 import 'package:trackingapp/ui/component/devices/location_info.dart';
+import 'package:trackingapp/ui/component/devices/recent_events_info.dart';
 import 'package:trackingapp/ui/component/devices/sensors_info.dart';
 import 'package:trackingapp/ui/component/devices/service_info.dart';
 
@@ -22,7 +23,7 @@ class DetailContent extends StatelessWidget {
       child: Obx(() => (Get.find<DeviceController>().isLoading.value)
           ? Text('Loading')
           : Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(14, 8.0, 14, 12),
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
@@ -40,6 +41,10 @@ class DetailContent extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
                         child: LocationInfo(detailData),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: RecentEventsInfo(detailData.id),
                       ),
                     ],
                   ),

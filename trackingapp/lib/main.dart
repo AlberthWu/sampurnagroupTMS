@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/api/devices/device_profider.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
+import 'package:trackingapp/bussiness_logic/controller/events/events_controller.dart';
 import 'package:trackingapp/ui/pages/home_page.dart';
 
 void main() async {
   Get.lazyPut(() => DeviceController());
-  Get.lazyPut(() => DeviceProvider());
+  Get.lazyPut(() => EventsController());
   runApp(const MyApp());
 }
 

@@ -8,7 +8,7 @@ import 'package:trackingapp/ui/component/devices/gps.dart';
 import 'package:trackingapp/ui/component/devices/list.dart';
 
 class DeviceDetail extends StatelessWidget {
-  const DeviceDetail(this.detailData, {super.key});
+  const DeviceDetail(this.detailData, Future deviceId, {super.key});
 
   final Items detailData;
 

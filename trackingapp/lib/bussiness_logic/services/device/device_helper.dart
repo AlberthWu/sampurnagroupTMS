@@ -1,7 +1,7 @@
 import 'package:trackingapp/bussiness_logic/api/devices/user_api_hash.dart';
 
-class ApiConst {
-  ApiConst._();
+class DeviceApiConst {
+  DeviceApiConst._();
   static const String baseUrl =
       'https://telematics.transtrack.id/api/get_devices';
   static const String path =
