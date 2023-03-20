@@ -22,7 +22,8 @@ class RecentEventsInfo extends StatelessWidget {
         const Divider(
           thickness: 2,
         ),
-        (Get.find<EventsController>().listEvents.isNotEmpty)
+        (Get.find<EventsController>().listEvents.value?.itemEvents.dataEvents ==
+                null)
             ? const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('No Data Events'),
@@ -33,10 +34,19 @@ class RecentEventsInfo extends StatelessWidget {
                   1: FlexColumnWidth(4)
                 },
                 children: [
-                  // for (final DataEvents listEvents
-                  //     in Get.find<EventsController>().listEvents..toList())
-                  // for (var i in listEvents.)
-                  TableRow(children: [Text('Jam'), Text('ajdbja')])
+                  for (final DataEvents listEvents
+                      in Get.find<EventsController>()
+                          .listEvents
+                          .value!
+                          .itemEvents
+                          .dataEvents
+                          .toList())
+                    TableRow(children: [
+                      Text('Jam'),
+                      (listEvents.type == 'zone_out')
+                          ? Text('Geofence Out')
+                          : Text('Geofence In')
+                    ])
                 ],
               ),
       ],

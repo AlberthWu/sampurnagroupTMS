@@ -84,9 +84,10 @@ class DataEvents {
 
   DataEvents.fromJSON(JSON json) {
     id = json['id'];
-    additionalEvent = json['additional'] == null
-        ? null
-        : AdditionalEvent.fromJSON(json['additional']);
+    // additionalEvent = json['additional'] == null
+    //     ? null
+    //     : AdditionalEvent.fromJSON(json['additional']);
+    additionalEvent = AdditionalEvent.fromJSON(json['additional']);
     address = json['address'];
     altitude = json['altitude'];
     course = json['course'];
@@ -97,6 +98,7 @@ class DataEvents {
     deviceName = json['device_name'];
     // geofenceEvent =
     //     json['geofence'] ? null : GeofenceEvent.fromJSON(json['geofence']);
+    geofenceEvent = GeofenceEvent.fromJSON(json['geofence']);
     geofenceId = json['geofence_id'];
     latitude = json['latitude'];
     longitude = json['longitude'];

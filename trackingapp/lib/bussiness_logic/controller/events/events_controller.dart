@@ -4,7 +4,8 @@ import 'package:trackingapp/bussiness_logic/model/events/events_model.dart';
 import 'package:trackingapp/bussiness_logic/services/events/events_repository.dart';
 
 class EventsController extends GetxController {
-  final RxList<EventsModel> listEvents = RxList();
+  final Rxn<EventsModel> listEvents = Rxn<EventsModel>();
+  // final listEvents = RxList<EventsModel>();
   var isLoading = false.obs;
   var isError = false.obs;
   var errmsg = "".obs;
