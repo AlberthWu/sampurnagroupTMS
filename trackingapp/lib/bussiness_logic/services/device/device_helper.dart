@@ -1,5 +1,3 @@
-import 'package:trackingapp/bussiness_logic/api/devices/user_api_hash.dart';
-
 class DeviceApiConst {
   DeviceApiConst._();
   static const String baseUrl =

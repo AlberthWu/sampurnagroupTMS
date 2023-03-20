@@ -44,15 +44,8 @@ class DataEvents {
       course,
       speed,
       deleted;
-  late String? type,
-      message,
-      address,
-      time,
-      createdAt,
-      updatedAt,
-      name,
-      detail,
-      deviceName;
+  late String type, message, time, name, detail, deviceName;
+  late String? createdAt, updatedAt, address;
   late double? latitude, longitude;
   late GeofenceEvent? geofenceEvent;
   late AdditionalEvent? additionalEvent;

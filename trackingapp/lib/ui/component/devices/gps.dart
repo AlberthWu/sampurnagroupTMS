@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
-import 'package:trackingapp/ui/component/devices/detail.dart';
+import 'package:trackingapp/ui/pages/details_page.dart';
 
 class GPSMap extends StatelessWidget {
   GPSMap({super.key});

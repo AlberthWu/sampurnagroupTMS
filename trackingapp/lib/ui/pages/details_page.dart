@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
-import 'package:trackingapp/ui/component/devices/detail_content.dart';
+import 'package:trackingapp/ui/component/details/detail_content.dart';
 import 'package:trackingapp/ui/component/devices/gps.dart';
 import 'package:trackingapp/ui/component/devices/list.dart';
 

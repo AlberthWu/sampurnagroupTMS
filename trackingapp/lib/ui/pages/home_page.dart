@@ -4,8 +4,8 @@ import 'package:trackingapp/bussiness_logic/controller/devices/device_controller
 import 'package:trackingapp/ui/component/devices/gps.dart';
 import 'package:trackingapp/ui/component/devices/list.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(_) => GetBuilder<DeviceController>(

@@ -12,8 +12,15 @@ class EventsController extends GetxController {
 
   Dio dio = Dio();
 
+  @override
+  void onInit() {
+    // int id = 0;
+    // eventsList(id);
+    super.onInit();
+  }
+
   Future eventsList(int id) async {
-    printError();
+    // printError();
     isLoading(false);
     try {
       isLoading(true);

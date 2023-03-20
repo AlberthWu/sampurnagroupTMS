@@ -1,8 +1,8 @@
-void Waktu() {
-  var dateTime = DateTime.now().toString().replaceAll(' ', 'T') + 'Z';
+String waktu() {
+  var dateTime = DateTime.now().toString();
+  if (dateTime.isNotEmpty) {
+    return dateTime;
+  } else {
+    return 'error';
+  }
 }
-
-// void main() {
-//   var dateTime = DateTime.now().toString().replaceAll(' ', 'T') + 'Z';
-//   print(dateTime);
-// }

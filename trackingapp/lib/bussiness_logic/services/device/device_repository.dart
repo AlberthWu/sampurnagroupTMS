@@ -7,7 +7,7 @@ class DeviceApi {
     try {
       final response =
           await Dio(BaseOptions(baseUrl: DeviceApiConst.baseUrl)).get(path);
-      print(response);
+      // print(response);
       return (response != null)
           ? (response.data as List?)
                   ?.map((e) => DeviceModel.fromJSON(e))
@@ -15,7 +15,7 @@ class DeviceApi {
               []
           : [];
     } on DioError catch (e) {
-      print('null');
+      // print('null');
       throw Exception(e.message);
     }
   }
