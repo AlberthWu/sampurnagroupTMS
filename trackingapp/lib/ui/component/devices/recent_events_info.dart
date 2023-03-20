@@ -43,9 +43,11 @@ class RecentEventsInfo extends StatelessWidget {
                           .toList())
                     TableRow(children: [
                       Text('Jam'),
-                      (listEvents.type == 'zone_out')
-                          ? Text('Geofence Out')
-                          : Text('Geofence In')
+                      (listEvents.type == '')
+                          ? Text('No Data')
+                          : (listEvents.type == 'zone_out')
+                              ? Text('Geofence Out')
+                              : Text('Geofence In')
                     ])
                 ],
               ),
