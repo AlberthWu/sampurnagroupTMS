@@ -1,7 +1,7 @@
 import 'package:trackingapp/utils/utils.dart';
 
 class GeofenceModel {
-  late GeofencesItems geofencesItems;
+  late GeofencesItems? geofencesItems;
   late int status;
 
   GeofenceModel(this.geofencesItems, this.status);
@@ -26,13 +26,15 @@ class GeofencesItems {
             .map((e) => Geofences.fromJSON(e))
             .toList();
   }
+
+  JSON get toJSON => {'geofences': geofences};
 }
 
 class Geofences {
-  late int id, userId, groupId, active, speedLimit;
-  late String name, coordinates, polygonColor, createdAt, updatedAt, type;
-  late double radius;
-  late CenterGeofences centerGeofences;
+  late int? id, userId, groupId, active, speedLimit;
+  late String? name, coordinates, polygonColor, createdAt, updatedAt, type;
+  late double? radius;
+  late CenterGeofences? centerGeofences;
 
   Geofences(
       this.active,
@@ -51,7 +53,9 @@ class Geofences {
 
   Geofences.fromJSON(JSON json) {
     active = json['active'];
-    centerGeofences = json['center'];
+    centerGeofences = json['center'] == null
+        ? null
+        : CenterGeofences.fromJSON(json['center']);
     coordinates = json['coordinates'];
     createdAt = json['created_at'];
     groupId = json['group_id'];

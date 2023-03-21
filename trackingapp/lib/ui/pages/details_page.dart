@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 import 'package:trackingapp/ui/component/details/detail_content.dart';
-import 'package:trackingapp/ui/component/devices/gps.dart';
-import 'package:trackingapp/ui/component/devices/list.dart';
+import 'package:trackingapp/ui/component/details/details_gps.dart';
 
 class DeviceDetail extends StatelessWidget {
   const DeviceDetail(this.detailData, Future deviceId, {super.key});
@@ -18,7 +16,7 @@ class DeviceDetail extends StatelessWidget {
       appBar: AppBar(title: Text(detailData.name)),
       body: ListView(
         children: [
-          GPSMap(),
+          DetailsGPSMap(),
           new Container(
             height: Get.height * 0.5,
             child: DetailContent(detailData),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_helper.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_repository.dart';
@@ -13,6 +14,8 @@ class DeviceController extends GetxController {
   var isError = false.obs;
   var errmsg = "".obs;
   var updating = false.obs;
+
+  var marker = RxSet<Marker>();
 
   Dio dio = Dio();
 
@@ -56,6 +59,44 @@ class DeviceController extends GetxController {
       throw Exception(e);
     }
   }
+
+  // deviceList() async {
+  //   try {
+  //     isLoading(true);
+  //     final result = await DeviceApi().getData(DeviceApiConst.path);
+  //     isLoading(false);
+  //     isError(false);
+  //     updating(true);
+  //     listDevice.value = result;
+  //     // print(listDevice.value);
+  //     return listDevice;
+  //   } catch (e) {
+  //     isLoading(false);
+  //     isError(true);
+  //     throw Exception(e);
+  //   } finally {
+  //     isLoading(false);
+  //     print('finally : $listDevice');
+  //     // createMarkers();
+  //   }
+  // }
+
+  // createMarkers() {
+  //   listDevice.forEach((element) {
+  //     marker.add(Marker(markerId: MarkerId(element.items[0].id.toString())));
+  //     icon:
+  //     BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue);
+  //     position:
+  //     LatLng(element.items[0].lat, element.items[0].lng);
+  //     infoWindow:
+  //     InfoWindow(
+  //         title: element.items[0].name, snippet: element.items[0].address);
+  //     onTap:
+  //     () {
+  //       print('market tapped');
+  //     };
+  //   });
+  // }
 
   // Future deviceList() async {
   //   isDataLoading(true);
