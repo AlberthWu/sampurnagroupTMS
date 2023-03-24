@@ -9,22 +9,15 @@ import 'package:trackingapp/bussiness_logic/controller/geofence/geofence_control
 import 'package:trackingapp/bussiness_logic/model/geofence/geofence_model.dart';
 
 class GeofenceGPSMapDetails extends StatelessWidget {
-  GeofenceGPSMapDetails(this.i, this.id, {super.key});
+  GeofenceGPSMapDetails(this.i, {super.key});
 
   final Geofences i;
 
-  final int id;
-
-  late List<LatLng> pointsLatLang = [];
-
-  // createPolygon() {
-  //   final List<dynamic> point = jsonDecode(i.coordinates);
-  //   pointsLatLang = point.map((e) => LatLng(e['lat'], e['lng'])).toList();
-  // }
+  late List<LatLng> _pointsLatLang = [];
 
   @override
   Widget build(_) {
-    return Container(
+    return SizedBox(
       height: Get.height * 0.67,
       width: Get.width,
       child: (i == null)
@@ -41,20 +34,26 @@ class GeofenceGPSMapDetails extends StatelessWidget {
                     Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
                 ..add(Factory<VerticalDragGestureRecognizer>(
                     () => VerticalDragGestureRecognizer())),
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(pointsLatLang.first.latitude,
-                      pointsLatLang.first.longitude),
-                  zoom: 18),
               polygons: {
                 Polygon(
                     polygonId: PolygonId(i.id.toString() + 'details'),
-                    points: pointsLatLang,
+                    points: _pointsLatLang,
                     fillColor: HexColor(i.polygonColor).withOpacity(0.2),
                     strokeColor: HexColor(i.polygonColor),
                     strokeWidth: 2)
               },
-              // Get.find<GeofenceController>().polygon
+              // Get.find<GeofenceController>().polygon,
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(-6.3263292, 106.603353), zoom: 18),
             ),
     );
+  }
+
+  createPolygon() {
+    final List<dynamic> point = jsonDecode(i.coordinates);
+    _pointsLatLang = point.map((e) => LatLng(e['lat'], e['lng'])).toList();
+    print(_pointsLatLang);
+    print(point);
+    return _pointsLatLang;
   }
 }

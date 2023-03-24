@@ -37,7 +37,7 @@ class ListGeofence extends StatelessWidget {
                         : InkWell(
                             onTap: () {
                               final int id = i.id;
-                              Get.to(GeofenceDetails(i, id));
+                              Get.to(GeofenceDetails(i));
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),

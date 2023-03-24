@@ -30,24 +30,16 @@ class DetailsGeofence extends StatelessWidget {
                 ],
               )
             : ListView(
-                scrollDirection: Axis.horizontal,
+                // scrollDirection: Axis.horizontal,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: Container(
-                        height: Get.height,
-                        width: Get.width * 0.4,
-                        color: Colors.amber,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(i.name),
-                          ],
-                        ),
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(i.name),
+                      ],
                     ),
                   )
                 ],

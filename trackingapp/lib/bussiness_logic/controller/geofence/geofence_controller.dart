@@ -19,9 +19,10 @@ class GeofenceController extends GetxController {
   // List<LatLng> polygonLatLngs = <LatLng>[];
 
   var polygon = RxSet<Polygon>();
-
   late List<LatLng> pointsLatLng = [];
-  // late final Polygon polygon;
+
+  var detailPolygon = RxSet<Polygon>();
+  late List<LatLng> detailPointLatLng = [];
 
   Dio dio = Dio();
 
@@ -41,9 +42,9 @@ class GeofenceController extends GetxController {
       listGeofence.value = result;
       for (var i in listGeofence.value!.geofencesItems!.geofences) {
         geofences.add(i);
-        // final List<dynamic> pointsJSON = jsonDecode(i.coordinates);
-        // pointsLatLng =
-        //     pointsJSON.map((e) => LatLng(e['lat'], e['lng'])).toList();
+        final List<dynamic> detailPointsJSON = jsonDecode(i.coordinates);
+        detailPointLatLng =
+            detailPointsJSON.map((e) => LatLng(e['lat'], e['lng'])).toList();
       }
       // print(geofences);
       // print(pointsLatLng);
