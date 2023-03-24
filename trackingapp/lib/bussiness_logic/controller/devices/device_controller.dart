@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 // import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:trackingapp/bussiness_logic/controller/events/events_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_helper.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_repository.dart';
 import 'package:trackingapp/ui/component/details/detail_content.dart';
+import 'package:trackingapp/ui/pages/details_page.dart';
 
 class DeviceController extends GetxController {
   final RxList<DeviceModel> listDevice = RxList();
@@ -52,12 +54,19 @@ class DeviceController extends GetxController {
       isLoading(false);
       isError(false);
       listDevice.value = result;
-      // print(listDevice.value);
+      for (var i in listDevice.value) {
+        for (var j in i.items) {
+          itemsModel.add(j);
+        }
+      }
       return listDevice;
+      // return itemsModel;
     } catch (e) {
       isLoading(false);
       isError(true);
       throw Exception(e);
+    } finally {
+      createMarkers();
     }
   }
 
@@ -107,50 +116,56 @@ class DeviceController extends GetxController {
   //   return data;
   // }
 
-  listItem() async {
-    try {
-      // final DeviceController deviceController = Get.find();
-      // print('kepanggil');
-      isShow(true);
-      // print('${isShow} maknfaklnfakj');
-      isLoading(true);
-      final result = await DeviceApi().getData(DeviceApiConst.path);
-      isLoading(false);
-      isError(false);
-      listDevice.value = result;
-      if (listDevice.value.isEmpty) {
-        print('Kosonggggg');
-      } else {
-        for (final DeviceModel deviceList
-            in Get.find<DeviceController>().listDevice.toList()) {
-          for (final Items items in deviceList.items.toList()) {
-            print(items.lat);
-            itemsModel.add(items);
-          }
-        }
-      }
+  // listItem() async {
+  //   try {
+  //     // final DeviceController deviceController = Get.find();
+  //     // print('kepanggil');
+  //     isShow(true);
+  //     // print('${isShow} maknfaklnfakj');
+  //     isLoading(true);
+  //     final result = await DeviceApi().getData(DeviceApiConst.path);
+  //     isLoading(false);
+  //     isError(false);
+  //     listDevice.value = result;
+  //     if (listDevice.value.isEmpty) {
+  //       print('Kosonggggg');
+  //     } else {
+  //       for (final DeviceModel deviceList
+  //           in Get.find<DeviceController>().listDevice.toList()) {
+  //         for (final Items items in deviceList.items.toList()) {
+  //           print(items.lat);
+  //           itemsModel.add(items);
+  //         }
+  //       }
+  //     }
 
-      print(itemsModel);
-      return itemsModel;
-    } catch (e) {
-      printError();
-    } finally {
-      createMarkers();
-    }
-  }
+  //     print(itemsModel);
+  //     return itemsModel;
+  //   } catch (e) {
+  //     printError();
+  //   } finally {
+  //     createMarkers();
+  //   }
+  // }
 
   createMarkers() {
     itemsModel.forEach(
       (element) async {
         markers.add(Marker(
-            markerId: MarkerId(element.id.toString()),
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-            position: LatLng(element.lat, element.lng),
-            infoWindow: InfoWindow(title: element.name, snippet: element.name),
+          markerId: MarkerId(element.id.toString()),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          position: LatLng(element.lat, element.lng),
+          infoWindow: InfoWindow(
+            title: element.name,
+            snippet: element.name,
             onTap: () {
-              print('this is blabala');
-            }));
+              final detailData = element;
+              final deviceId =
+                  Get.find<EventsController>().eventsList(element.id);
+              Get.to(DeviceDetail(detailData, deviceId));
+            },
+          ),
+        ));
       },
     );
   }

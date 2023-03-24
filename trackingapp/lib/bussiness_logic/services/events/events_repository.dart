@@ -10,7 +10,7 @@ class EventsApi {
     try {
       final response = await Dio(BaseOptions(baseUrl: url)).get(
           '?device_id=$id&date_from=1995-07-22T19:58:17.713Z&date_to=$dateTime&lang=en&user_api_hash=\$2y\$10\$FAIEorvAA7Z7V/pDrVON7.w7LMRfcNak/SjyfvtEnhptKcXM3IgMy');
-      print(response);
+      // print(response);
       return EventsModel.fromJSON(response.data);
     } on DioError catch (e) {
       throw Exception(e.message);

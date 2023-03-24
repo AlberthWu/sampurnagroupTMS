@@ -20,7 +20,7 @@ class GeofencingPage extends StatelessWidget {
             children: <Widget>[
               GeofenceGPSMap(),
               new Container(
-                height: Get.height * 0.5,
+                height: Get.height * 0.16,
                 child: ListGeofence(),
               )
             ],

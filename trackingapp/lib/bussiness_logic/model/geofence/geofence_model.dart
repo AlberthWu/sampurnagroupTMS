@@ -31,8 +31,9 @@ class GeofencesItems {
 }
 
 class Geofences {
-  late int? id, userId, groupId, active, speedLimit;
-  late String? name, coordinates, polygonColor, createdAt, updatedAt, type;
+  late int id, userId, groupId, active, speedLimit;
+  late String name, coordinates, polygonColor, createdAt, type;
+  late String? updatedAt;
   late double? radius;
   late CenterGeofences? centerGeofences;
 
