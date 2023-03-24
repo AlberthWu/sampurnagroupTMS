@@ -1,9 +1,15 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
+import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 
 class DetailsGPSMap extends StatelessWidget {
-  DetailsGPSMap({super.key});
+  DetailsGPSMap(this.detailData, {super.key});
+
+  final Items detailData;
 
   bool selected = false;
 
@@ -15,23 +21,49 @@ class DetailsGPSMap extends StatelessWidget {
     mapController = controller;
   }
 
+  // var markersDetail = Set<Marker>();
+
+  // final marker = Marker(
+  //     markerId: MarkerId(detailData.id.toString()),
+  //     position: LatLng(detailData.lat, detailData.lng),
+  //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure));
+
   @override
   // final DeviceController deviceController = Get.put(DeviceController());
   Widget build(_) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Container(
-        color: Colors.grey,
-        height: Get.height * 0.4,
-        width: Get.width,
-        // child: GoogleMap(
-        //   mapType: MapType.normal,
-        //   initialCameraPosition: CameraPosition(
-        //     target: LatLng(3.595196, 98.672226),
-        //     zoom: 14.0,
-        //   ),
-        child: Text('data'),
-      ),
+    return Container(
+      color: Colors.grey,
+      height: Get.height * 0.4,
+      width: Get.width,
+      // child: GoogleMap(
+      //   mapType: MapType.normal,
+      //   initialCameraPosition: CameraPosition(
+      //     target: LatLng(3.595196, 98.672226),
+      //     zoom: 14.0,
+      //   ),
+      child: (detailData != null)
+          ? GoogleMap(
+              mapType: MapType.normal,
+              gestureRecognizers: Set()
+                ..add(
+                    Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+                ..add(Factory<ScaleGestureRecognizer>(
+                    () => ScaleGestureRecognizer()))
+                ..add(
+                    Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+                ..add(Factory<VerticalDragGestureRecognizer>(
+                    () => VerticalDragGestureRecognizer())),
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(detailData.lat, detailData.lng), zoom: 15),
+              markers: {
+                  Marker(
+                    markerId: MarkerId(detailData.id.toString() + 'details'),
+                    position: LatLng(detailData.lat, detailData.lng),
+                  )
+                })
+          : const Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }

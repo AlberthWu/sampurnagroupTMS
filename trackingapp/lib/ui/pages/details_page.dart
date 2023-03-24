@@ -16,7 +16,7 @@ class DeviceDetail extends StatelessWidget {
       appBar: AppBar(title: Text(detailData.name)),
       body: ListView(
         children: [
-          DetailsGPSMap(),
+          DetailsGPSMap(detailData),
           new Container(
             height: Get.height * 0.5,
             child: DetailContent(detailData),

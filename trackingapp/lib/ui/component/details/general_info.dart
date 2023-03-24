@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+// import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
 
 class GeneralInfo extends StatelessWidget {
-  const GeneralInfo(this.detailData, {super.key});
+  GeneralInfo(this.detailData, {super.key});
 
   final Items detailData;
+
+  // final LatLng myPosition = LatLng(detailData.lat, detailData.lng);
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +58,7 @@ class GeneralInfo extends StatelessWidget {
                   1: FlexColumnWidth(4)
                 },
                 children: [
-                  TableRow(children: [
-                    const Text('Address: '),
-                    Text(detailData.address)
-                  ]),
+                  TableRow(children: [const Text('Address: '), Text('')]),
                   TableRow(
                       children: [const Text('Time: '), Text(detailData.time)]),
                   TableRow(children: [
