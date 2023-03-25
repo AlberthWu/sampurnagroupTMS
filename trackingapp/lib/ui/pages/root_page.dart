@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:trackingapp/ui/pages/geofencing_page.dart';
 import 'package:trackingapp/ui/pages/history_page.dart';
 import 'package:trackingapp/ui/pages/home_page.dart';
+import 'package:trackingapp/ui/pages/login_page.dart';
+import 'package:trackingapp/ui/pages/profile_page.dart';
 import 'package:trackingapp/utils/style.dart';
 
 class RootPage extends StatelessWidget {
@@ -19,10 +21,11 @@ class RootPage extends StatelessWidget {
           unselectedLabelStyle: TextStyle(color: MyStyle.secondaryColor),
           selectedItemColor: MyStyle.buttonColor,
           items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
             BottomNavigationBarItem(icon: Icon(Icons.gps_fixed), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Geofence'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.mark_as_unread), label: 'History')
+                icon: Icon(Icons.mark_as_unread), label: 'History'),
           ],
           currentIndex: tc.selectedIndex.value,
           onTap: tc.onItemTapped,
@@ -47,6 +50,7 @@ class MyTabController extends GetxController
   final RxInt selectedIndex = 0.obs;
 
   final List<Widget> widgetOptions = <Widget>[
+    ProfilePage(),
     HomePage(),
     GeofencingPage(),
     HistoryPage(),
@@ -59,7 +63,7 @@ class MyTabController extends GetxController
 
   @override
   void onInit() {
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     super.onInit();
   }
 }

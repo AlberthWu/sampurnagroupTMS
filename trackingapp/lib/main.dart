@@ -5,10 +5,12 @@ import 'package:trackingapp/bussiness_logic/controller/devices/device_controller
 import 'package:trackingapp/bussiness_logic/controller/devices/gps_controller.dart';
 import 'package:trackingapp/bussiness_logic/controller/events/events_controller.dart';
 import 'package:trackingapp/bussiness_logic/controller/geofence/geofence_controller.dart';
+import 'package:trackingapp/bussiness_logic/controller/profile/login_controller.dart';
 import 'package:trackingapp/ui/pages/home_page.dart';
 import 'package:trackingapp/ui/pages/root_page.dart';
 
 void main() async {
+  Get.lazyPut(() => LoginController());
   Get.put(EventsController());
   Get.put(DeviceController());
   Get.put(GeofenceController());

@@ -1,0 +1,128 @@
+// Sure! Here's an example of how you can save cookies using GetStorage, GetX, and Dio in Flutter to handle login with the Sampurna Group API:
+
+//     Add the dio, get_storage, and get packages to your pubspec.yaml file and run flutter pub get to install them:
+
+// yaml
+
+// dependencies:
+//   dio: ^4.0.0
+//   get_storage: ^2.0.3
+//   get: ^4.1.4
+
+//     Import the necessary packages:
+
+// dart
+
+// import 'package:dio/dio.dart';
+// import 'package:get_storage/get_storage.dart';
+// import 'package:get/get.dart';
+
+//     Create an instance of Dio and set its base URL:
+
+// dart
+
+// final dio = Dio(BaseOptions(
+//   baseUrl: 'https://api.sampurna-group.com/v2/users/',
+// ));
+
+//     Create an instance of GetStorage to save the cookies:
+
+// dart
+
+// final box = GetStorage('cookies');
+
+//     Create a SessionController class to handle authentication:
+
+// dart
+
+// class SessionController extends GetxController {
+//   final isLoggedIn = false.obs;
+
+//   Future<void> login(String email, String password) async {
+//     try {
+//       final response = await dio.post('login', data: {
+//         'email': email,
+//         'password': password,
+//       });
+
+//       final headers = response.headers.map;
+//       final cookie = headers['set-cookie'];
+//       if (cookie != null) {
+//         box.write('cookies', cookie.join('; '));
+//       }
+
+//       isLoggedIn.value = true;
+
+//       // handle successful login here
+//     } catch (error) {
+//       // handle login error here
+//     }
+//   }
+
+//   void logout() {
+//     box.remove('cookies');
+//     isLoggedIn.value = false;
+//     // handle logout here
+//   }
+
+//   @override
+//   void onInit() {
+//     final cookie = box.read('cookies');
+//     if (cookie != null) {
+//       dio.options.headers['cookie'] = cookie;
+//       isLoggedIn.value = true;
+//     }
+//     super.onInit();
+//   }
+// }
+
+//     Wrap your app with a GetMaterialApp and add SessionController to the list of dependencies:
+
+// dart
+
+// void main() async {
+//   await GetStorage.init();
+//   runApp(
+//     GetMaterialApp(
+//       home: HomePage(),
+//       initialBinding: BindingsBuilder(() {
+//         Get.lazyPut(() => SessionController());
+//       }),
+//     ),
+//   );
+// }
+
+//     You can now use SessionController in your HomePage to handle authentication:
+
+// dart
+
+// class HomePage extends StatelessWidget {
+//   final session = Get.find<SessionController>();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Home Page'),
+//       ),
+//       body: Center(
+//         child: Obx(() => session.isLoggedIn.value
+//             ? Text('Logged in')
+//             : ElevatedButton(
+//                 child: Text('Log in'),
+//                 onPressed: () async {
+//                   await session.login('email', 'password');
+//                 },
+//               )),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         child: Icon(Icons.logout),
+//         onPressed: () {
+//           session.logout();
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// Note that in order for cookies to be saved, the server must include a Set-Cookie header in its response. If the server does not include this header, cookies will not be saved.
