@@ -9,11 +9,12 @@ class LoginController extends GetxController {
 
   final box = GetStorage('cookies');
 
-  final dio = Dio();
-  //   BaseOptions(
-  //       baseUrl: 'https://api.sampurna-group.com/v2/users/',
-  //       headers: {'accept': 'application/json'}),
-  // );
+  final dio = Dio(
+    BaseOptions(
+        baseUrl: 'https://api.sampurna-group.com/v2/users/',
+        headers: {'accept': 'application/json'}),
+  );
+
   // ..interceptors.add(CookieManager(box));
 
   Future<void> login(String email, String password) async {
