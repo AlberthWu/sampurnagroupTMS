@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:trackingapp/ui/pages/geofencing_page.dart';
 import 'package:trackingapp/ui/pages/history_page.dart';
 import 'package:trackingapp/ui/pages/home_page.dart';
+import 'package:trackingapp/ui/pages/list_device_easy_go.dart';
 import 'package:trackingapp/ui/pages/login_page.dart';
 import 'package:trackingapp/ui/pages/profile_page.dart';
 import 'package:trackingapp/utils/style.dart';
@@ -50,7 +51,8 @@ class MyTabController extends GetxController
   final RxInt selectedIndex = 0.obs;
 
   final List<Widget> widgetOptions = <Widget>[
-    HomePage(),
+    // HomePage(),
+    DeviceEasyGo(),
     GeofencingPage(),
     HistoryPage(),
     ProfilePage(),

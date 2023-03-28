@@ -1,129 +1,411 @@
 {
-    "items": {
-        "geofences": [
-            {
-                "id": 10610,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "Kadusirung",
-                "coordinates": "[{\"lat\":-6.326262068968182,\"lng\":106.60320103168489},{\"lat\":-6.326442015556465,\"lng\":106.60318627953531},{\"lat\":-6.326431352056677,\"lng\":106.60311788320543},{\"lat\":-6.32653132235849,\"lng\":106.60311117768289},{\"lat\":-6.326521991797809,\"lng\":106.60306423902513},{\"lat\":-6.326847228385099,\"lng\":106.60303875803947},{\"lat\":-6.326980522009268,\"lng\":106.60302802920341},{\"lat\":-6.327048501744366,\"lng\":106.60308301448823},{\"lat\":-6.327052500552029,\"lng\":106.60322785377504},{\"lat\":-6.327025841833659,\"lng\":106.6033673286438},{\"lat\":-6.326256737216462,\"lng\":106.60341292619707}]",
-                "polygon_color": "#d000df",
-                "created_at": "2023-01-11 01:13:40",
-                "updated_at": "2023-01-11 01:13:40",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
-            },
-            {
-                "id": 10611,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "Pool Rumpin",
-                "coordinates": "[{\"lat\":-6.389326090303559,\"lng\":106.62998997111461},{\"lat\":-6.389199301163514,\"lng\":106.62997104617556},{\"lat\":-6.389074965964112,\"lng\":106.62993970718404},{\"lat\":-6.388954282123503,\"lng\":106.62989625595165},{\"lat\":-6.388838411896101,\"lng\":106.62984111093753},{\"lat\":-6.388728471179118,\"lng\":106.62977480321835},{\"lat\":-6.3886255187659415,\"lng\":106.62969797137362},{\"lat\":-6.388530546149035,\"lng\":106.62961135533602},{\"lat\":-6.388444467971348,\"lng\":106.62951578926537},{\"lat\":-6.388368113217474,\"lng\":106.62941219351521},{\"lat\":-6.3883022172299135,\"lng\":106.62930156576917},{\"lat\":-6.388247414627209,\"lng\":106.62918497143292},{\"lat\":-6.388204233192017,\"lng\":106.62906353337368},{\"lat\":-6.388173088788148,\"lng\":106.62893842110638},{\"lat\":-6.388154281355442,\"lng\":106.6288108395305},{\"lat\":-6.388147992021161,\"lng\":106.62868201732637},{\"lat\":-6.388154281355442,\"lng\":106.62855319512222},{\"lat\":-6.388173088788148,\"lng\":106.62842561354637},{\"lat\":-6.388204233192017,\"lng\":106.62830050127904},{\"lat\":-6.388247414627209,\"lng\":106.6281790632198},{\"lat\":-6.3883022172299135,\"lng\":106.62806246888358},{\"lat\":-6.388368113217474,\"lng\":106.62795184113754},{\"lat\":-6.388444467971348,\"lng\":106.62784824538737},{\"lat\":-6.388530546149035,\"lng\":106.6277526793167},{\"lat\":-6.3886255187659415,\"lng\":106.62766606327912},{\"lat\":-6.388728471179118,\"lng\":106.62758923143438},{\"lat\":-6.388838411896101,\"lng\":106.62752292371522},{\"lat\":-6.388954282123503,\"lng\":106.62746777870107},{\"lat\":-6.389074965964112,\"lng\":106.6274243274687},{\"lat\":-6.389199301163514,\"lng\":106.6273929884772},{\"lat\":-6.389326090303559,\"lng\":106.62737406353814},{\"lat\":-6.389454112334202,\"lng\":106.62736773490907},{\"lat\":-6.389582134332824,\"lng\":106.62737406353814},{\"lat\":-6.389708923377999,\"lng\":106.6273929884772},{\"lat\":-6.3898332584233355,\"lng\":106.6274243274687},{\"lat\":-6.389953942056622,\"lng\":106.62746777870107},{\"lat\":-6.390069812031413,\"lng\":106.62752292371522},{\"lat\":-6.390179752460173,\"lng\":106.62758923143438},{\"lat\":-6.3902827045606125,\"lng\":106.62766606327912},{\"lat\":-6.390377676852289,\"lng\":106.6277526793167},{\"lat\":-6.390463754704745,\"lng\":106.62784824538737},{\"lat\":-6.390540109145881,\"lng\":106.62795184113754},{\"lat\":-6.39060600484522,\"lng\":106.62806246888358},{\"lat\":-6.3906608071952995,\"lng\":106.6281790632198},{\"lat\":-6.390703988423169,\"lng\":106.62830050127904},{\"lat\":-6.390735132672986,\"lng\":106.62842561354637},{\"lat\":-6.390753940010821,\"lng\":106.62855319512222},{\"lat\":-6.390760229313068,\"lng\":106.62868201732637},{\"lat\":-6.390753940010821,\"lng\":106.6288108395305},{\"lat\":-6.390735132672986,\"lng\":106.62893842110638},{\"lat\":-6.390703988423169,\"lng\":106.62906353337368},{\"lat\":-6.3906608071952995,\"lng\":106.62918497143292},{\"lat\":-6.39060600484522,\"lng\":106.62930156576917},{\"lat\":-6.390540109145881,\"lng\":106.62941219351521},{\"lat\":-6.390463754704745,\"lng\":106.62951578926537},{\"lat\":-6.390377676852289,\"lng\":106.62961135533602},{\"lat\":-6.3902827045606125,\"lng\":106.62969797137362},{\"lat\":-6.390179752460173,\"lng\":106.62977480321835},{\"lat\":-6.390069812031413,\"lng\":106.62984111093753},{\"lat\":-6.389953942056622,\"lng\":106.62989625595165},{\"lat\":-6.3898332584233355,\"lng\":106.62993970718404},{\"lat\":-6.389708923377999,\"lng\":106.62997104617556},{\"lat\":-6.389582134332824,\"lng\":106.62998997111461}]",
-                "polygon_color": "#ed26fd",
-                "created_at": "2023-01-11 01:15:59",
-                "updated_at": "2023-01-11 01:15:59",
-                "type": "circle",
-                "radius": 145.12,
-                "center": {
-                    "lat": -6.389454112331531,
-                    "lng": 106.62868201732637
+            "currentDO": {
+                "do_id": 24825633,
+                "status_do": 2,
+                "opsi_complete": 4,
+                "is_alarm": 0,
+                "dur_valid_tujuan": 300,
+                "company_id": 344,
+                "userid_monitor": 0,
+                "company_nm": "PIONIR BETON",
+                "note": "",
+                "flag": "",
+                "gps_sn": "44000338",
+                "sn_eseal": "",
+                "no_eseal": null,
+                "ket_status_do": "OUT Asal,OTW Tujuan",
+                "ket_opsi_complete": "Balik Pool/Asal",
+                "ket_close": null,
+                "tgl_do": "2023-03-27T20:03:19+07:00",
+                "tgl_input": "2023-03-27T20:03:25.217+07:00",
+                "tgl_bl": "0001-01-01T00:00:00+07:00",
+                "tgl_lock_asal": "0001-01-01T00:00:00+07:00",
+                "tgl_unlock_tujuan": "0001-01-01T00:00:00+07:00",
+                "tgl_balik_asal": "0001-01-01T00:00:00+07:00",
+                "tgl_closed": "0001-01-01T00:00:00+07:00",
+                "tgl_pod": "0001-01-01T00:00:00+07:00",
+                "max_time_checking": 24,
+                "max_time_delivery": 12.0,
+                "avg_suhu": null,
+                "no_sj": "",
+                "no_do": "KWC001641",
+                "transportir": "",
+                "driver_nm": "",
+                "alert_telegram": "",
+                "alert_email": "",
+                "asal": [
+                    {
+                        "geo_id": 18063,
+                        "dos_id": 0,
+                        "geo_nm": "Plant Karawang",
+                        "geo_code": "18",
+                        "geo_category": "Location",
+                        "tgl_masuk": "2023-03-27T19:16:39+07:00",
+                        "tgl_keluar": "2023-03-27T19:23:40+07:00",
+                        "tgl_unlock": "0001-01-01T00:00:00+07:00",
+                        "tgl_lock": "0001-01-01T00:00:00+07:00",
+                        "plan_loading_time": "0001-01-01T00:00:00+07:00",
+                        "duration": {
+                            "value": 421.0,
+                            "text": "7 m, 1 s"
+                        },
+                        "Complete": true,
+                        "validIN": true,
+                        "lat": -6.361732,
+                        "lon": 107.3222,
+                        "radius": 0.0,
+                        "desc": null,
+                        "geo_label": null,
+                        "stop_num": 0,
+                        "alarmOverStay": false
+                    }
+                ],
+                "tujuan": [
+                    {
+                        "geo_id": 252780,
+                        "dos_id": 3341226,
+                        "stop_num": 0,
+                        "geo_nm": "KWC001635",
+                        "geo_code": "KWC001635",
+                        "geo_type": "Tujuan",
+                        "no_sj": "",
+                        "tgl_masuk": "0001-01-01T00:00:00+07:00",
+                        "tgl_keluar": "0001-01-01T00:00:00+07:00",
+                        "tgl_unlock": "0001-01-01T00:00:00+07:00",
+                        "tgl_lock": "0001-01-01T00:00:00+07:00",
+                        "start_bongkar": "0001-01-01T00:00:00+07:00",
+                        "selesai_bongkar": "0001-01-01T00:00:00+07:00",
+                        "plan_unloading_time": "0001-01-01T00:00:00+07:00",
+                        "Complete": false,
+                        "duration": {
+                            "value": 0.0,
+                            "text": ""
+                        },
+                        "lon": 107.564912,
+                        "lat": -6.468078,
+                        "radius": 0.0,
+                        "ETA": null,
+                        "desc": "KWC001641",
+                        "cust_telegram": "",
+                        "cust_email": "",
+                        "info_from_prev": {
+                            "start_time": "2023-03-27T19:23:40+07:00",
+                            "stop_time": "0001-01-01T00:00:00+07:00",
+                            "durasi": {
+                                "value": 42388.0,
+                                "text": "11 h, 46 m"
+                            },
+                            "start_odometer": 76307.0,
+                            "stop_odometer": 0.0,
+                            "total_km": 0.0,
+                            "from_geoNm": "Plant Karawang",
+                            "from_geoid": 18063
+                        },
+                        "geo_label": null,
+                        "alarmOverStay": false
+                    }
+                ],
+                "geo_area": [],
+                "alert": [
+                    {
+                        "eventNm": "MASUK ASAL: Plant Karawang",
+                        "addr": "0.08 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+                        "lon": 107.32192993164063,
+                        "lat": -6.3614501953125,
+                        "odometer": 76307.0,
+                        "geo_nm": "Plant Karawang",
+                        "geo_code": "18",
+                        "geo_id": 18063,
+                        "dos_id": 0,
+                        "tgl_event": "2023-03-27T19:16:39+07:00"
+                    },
+                    {
+                        "eventNm": "KELUAR ASAL: Plant Karawang,7 m, 1 s",
+                        "addr": "0.09 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+                        "lon": 107.32186889648438,
+                        "lat": -6.3614997863769531,
+                        "odometer": 76307.0,
+                        "geo_nm": "Plant Karawang",
+                        "geo_code": "18",
+                        "geo_id": 18063,
+                        "dos_id": 0,
+                        "tgl_event": "2023-03-27T19:23:40+07:00"
+                    },
+                    {
+                        "eventNm": "Over Delivery Time : 12 jam",
+                        "addr": "0.08 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+                        "lon": 107.32196807861328,
+                        "lat": -6.3614840507507324,
+                        "odometer": 76307.0,
+                        "geo_nm": "Plant Karawang",
+                        "geo_code": null,
+                        "geo_id": 18063,
+                        "dos_id": 0,
+                        "tgl_event": "2023-03-28T07:10:08+07:00"
+                    }
+                ],
+                "alarm": [
+                    {
+                        "id": 397907,
+                        "eventNm": "IDLE",
+                        "addr": "0.09 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+                        "lon": 107.32186889648438,
+                        "lat": -6.3614001274108887,
+                        "geo_nm": "",
+                        "geo_code": "",
+                        "alarm_code": "DOB",
+                        "geo_id": 0,
+                        "geo_area_nm": "",
+                        "geo_area_id": 0,
+                        "start_time": "2023-03-27T19:57:40+07:00",
+                        "stop_time": "2023-03-27T21:26:10+07:00",
+                        "duration": {
+                            "value": 5310.0,
+                            "text": "1 h, 28 m"
+                        },
+                        "start_odometer": 0.0,
+                        "end_odometer": 0.0,
+                        "total_km": 0.0
+                    }
+                ],
+                "info_tujuan_asal": {
+                    "start_odometer": 0.0,
+                    "stop_odometer": 0.0,
+                    "total_km": 0.0,
+                    "start_time": "0001-01-01T00:00:00+07:00",
+                    "stop_time": "0001-01-01T00:00:00+07:00",
+                    "durasi": {
+                        "value": 0.0,
+                        "text": ""
+                    },
+                    "durasi_driving": null,
+                    "durasi_parking": null,
+                    "durasi_idle": null,
+                    "durasi2": 0.0
                 },
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
+                "info_asal_complete": {
+                    "start_odometer": 76307.0,
+                    "stop_odometer": 76307.0,
+                    "total_km": 0.0,
+                    "start_time": "2023-03-27T19:16:39+07:00",
+                    "stop_time": "2023-03-28T07:10:08+07:00",
+                    "durasi": {
+                        "value": 42809.0,
+                        "text": "11 h, 53 m"
+                    },
+                    "durasi_driving": {
+                        "value": 150.0,
+                        "text": "2 m, 30 s"
+                    },
+                    "durasi_parking": {
+                        "value": 34047.0,
+                        "text": "9 h, 27 m"
+                    },
+                    "durasi_idle": {
+                        "value": 870.0,
+                        "text": "14 m, 30 s"
+                    },
+                    "durasi2": 0.0,
+                    "ETA": {
+                        "estimated_time": "0001-01-01T00:00:00+07:00",
+                        "estimated_durasi": {
+                            "value": 0.0,
+                            "text": ""
+                        },
+                        "total_km": 0.0,
+                        "auto_eta": true
+                    }
+                },
+                "versi_do": 0,
+                "routeCheckpoint": null,
+                "info_shipment": null,
+                "doc_Ceisa": null,
+                "skipAsal_DOId": 0,
+                "bCheckDoneHistData": true,
+                "safety_info": {
+                    "total_HA": 0,
+                    "total_HB": 0,
+                    "total_HC": 0,
+                    "total_IC": 0,
+                    "details": []
+                }
             },
-            {
-                "id": 11426,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "PIB Serpong",
-                "coordinates": "[{\"lat\":-6.327886917741814,\"lng\":106.68561458587648},{\"lat\":-6.328665350454687,\"lng\":106.68583989143373},{\"lat\":-6.328798643609825,\"lng\":106.6852766275406},{\"lat\":-6.327977557227612,\"lng\":106.68501913547517}]",
-                "polygon_color": "#00df20",
-                "created_at": "2023-02-21 04:09:02",
-                "updated_at": "2023-02-21 04:09:02",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
+            "currentDoIDV3": 0,
+            "currentDoIDV2": 0,
+            "currentDoID": 0,
+            "altitude": 0,
+            "engineHourAkum": null,
+            "overSpeedStatus": null,
+            "overSpeedInGeoStatus": null,
+            "currentgoogleKec": null,
+            "currentgoogleKota": null,
+            "output2Status": null,
+            "output1Status": null,
+            "inputanalog2Status": null,
+            "inputanalog1Status": null,
+            "input3Status": null,
+            "input2Status": null,
+            "input1Status": null,
+            "currentGeoUplineAreaStatus": null,
+            "currentGeoUplineLocStatus": null,
+            "currentGeoAreaStatus": null,
+            "currentGeoLocationStatus": {
+                "geo_id": 18063,
+                "geotype_id": 3,
+                "geo_nm": "Plant Karawang",
+                "geo_code": "18",
+                "geotype_nm": "Pool",
+                "geo_tag": "",
+                "start_time": "2023-03-27T21:26:10+07:00",
+                "stop_time": "2023-03-28T07:10:08+07:00",
+                "rfid_driver": {
+                    "value": "",
+                    "text": ""
+                },
+                "duration": {
+                    "value": 35038.0,
+                    "text": "9 h, 43 m"
+                },
+                "dur_moving": {
+                    "value": 120.0,
+                    "text": "2 m"
+                },
+                "avg_speed": 0.0,
+                "total_km": 0.0
             },
-            {
-                "id": 11427,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "PIB Karawaci",
-                "coordinates": "[{\"lat\":-6.267992078858333,\"lng\":106.59605026245119},{\"lat\":-6.268490653353462,\"lng\":106.59723848104478},{\"lat\":-6.269202520924278,\"lng\":106.59693002700807},{\"lat\":-6.268957233331677,\"lng\":106.59644186496736},{\"lat\":-6.268637292820168,\"lng\":106.59651696681976},{\"lat\":-6.2684666578004435,\"lng\":106.59594297409059}]",
-                "polygon_color": "#00df48",
-                "created_at": "2023-02-21 04:13:07",
-                "updated_at": "2023-02-21 04:13:07",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
+            "totalkm_ytd": {
+                "total_km": 5241.0,
+                "start_date_counting": "2023-01-02T16:08:37+07:00"
             },
-            {
-                "id": 11428,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "MBS",
-                "coordinates": "[{\"lat\":-6.444142900220365,\"lng\":106.5841841697693},{\"lat\":-6.443652491750973,\"lng\":106.58460259437562},{\"lat\":-6.443663152809698,\"lng\":106.58492445945741},{\"lat\":-6.443695135984525,\"lng\":106.5850853919983},{\"lat\":-6.443897696044936,\"lng\":106.58545017242433},{\"lat\":-6.444430748448984,\"lng\":106.58556818962097},{\"lat\":-6.445113054708767,\"lng\":106.58549308776857},{\"lat\":-6.446733528396949,\"lng\":106.5847420692444},{\"lat\":-6.4473945095986425,\"lng\":106.58354043960573},{\"lat\":-6.447117324038313,\"lng\":106.58258557319643},{\"lat\":-6.447511780367003,\"lng\":106.58168435096741},{\"lat\":-6.446776172371439,\"lng\":106.5802574157715},{\"lat\":-6.445539495655046,\"lng\":106.57918453216554},{\"lat\":-6.444580003021743,\"lng\":106.57817602157594},{\"lat\":-6.442788945250394,\"lng\":106.57774686813356},{\"lat\":-6.442202585677604,\"lng\":106.57951712608339},{\"lat\":-6.442501096090242,\"lng\":106.58097624778748},{\"lat\":-6.443524559028816,\"lng\":106.58179163932802},{\"lat\":-6.444537358862577,\"lng\":106.58139467239381},{\"lat\":-6.4446226471773205,\"lng\":106.58308982849121},{\"lat\":-6.445155698819537,\"lng\":106.58401250839235},{\"lat\":-6.444569341982279,\"lng\":106.58443093299867}]",
-                "polygon_color": "#c4df00",
-                "created_at": "2023-02-21 04:18:36",
-                "updated_at": "2023-02-21 04:20:42",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
+            "totalkm_mtd": {
+                "total_km": 1979.0,
+                "start_date_counting": "2023-03-01T00:00:24+07:00"
             },
-            {
-                "id": 11429,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "MBI",
-                "coordinates": "[{\"lat\":-6.44768235598165,\"lng\":106.58208131790161},{\"lat\":-6.447703677929449,\"lng\":106.58347606658936},{\"lat\":-6.450635437211869,\"lng\":106.58354043960573},{\"lat\":-6.450635437211869,\"lng\":106.58202767372131}]",
-                "polygon_color": "#d9df00",
-                "created_at": "2023-02-21 04:21:31",
-                "updated_at": "2023-02-21 04:21:55",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
+            "currentUtilisasiStatus": {
+                "util_id": 5,
+                "info_start_complete": {
+                    "start_odometer": 0.0,
+                    "stop_odometer": 0.0,
+                    "total_km": 0.0,
+                    "start_time": "0001-01-01T00:00:00+07:00",
+                    "stop_time": "0001-01-01T00:00:00+07:00",
+                    "durasi": {
+                        "value": 0.0,
+                        "text": ""
+                    },
+                    "durasi_driving": null,
+                    "durasi_parking": null,
+                    "durasi_idle": null,
+                    "durasi2": 0.0
+                },
+                "status": 1,
+                "geo_tipe_seq": 1,
+                "next_seq": 0,
+                "durtemp": 0.0,
+                "dur1temp": 0.0,
+                "durRittemp": 0.0,
+                "ket_status": "IN - Pool",
+                "ritase": [
+                    {
+                        "geo_id": 18063,
+                        "geo_seq": 1,
+                        "geo_nm": "Plant Karawang",
+                        "geo_code": "18",
+                        "geotype_nm": "Pool",
+                        "geo_tag": "",
+                        "start_time": "2023-03-27T21:26:10+07:00",
+                        "stop_time": "0001-01-01T00:00:00+07:00",
+                        "duration": {
+                            "value": 35038.0,
+                            "text": "9 h, 43 m"
+                        },
+                        "in_odometer": 76307.0,
+                        "out_odometer": 76307.0,
+                        "info_to_next": null,
+                        "time_in": null,
+                        "time_out": null
+                    }
+                ]
             },
-            {
-                "id": 11436,
-                "user_id": 1002,
-                "group_id": 0,
-                "active": 1,
-                "name": "ASM Rumpin",
-                "coordinates": "[{\"lat\":-6.389112922043512,\"lng\":106.62696003913881},{\"lat\":-6.388185309790653,\"lng\":106.6278398036957},{\"lat\":-6.388675771651088,\"lng\":106.62839770317079},{\"lat\":-6.3884092163504675,\"lng\":106.62898778915407},{\"lat\":-6.389363483685433,\"lng\":106.62954032421113},{\"lat\":-6.389928579704008,\"lng\":106.62956714630128},{\"lat\":-6.389928579704008,\"lng\":106.62956714630128},{\"lat\":-6.3902164585678305,\"lng\":106.6297334432602},{\"lat\":-6.39028576271456,\"lng\":106.62932574748993},{\"lat\":-6.3905629792075915,\"lng\":106.6289395093918},{\"lat\":-6.390408377720378,\"lng\":106.62846744060518},{\"lat\":-6.389000968929814,\"lng\":106.628075838089},{\"lat\":-6.3894114635603065,\"lng\":106.62696003913881},{\"lat\":-6.389155570842292,\"lng\":106.62680447101594}]",
-                "polygon_color": "#d1df00",
-                "created_at": "2023-02-21 04:47:38",
-                "updated_at": "2023-02-21 04:47:38",
-                "type": "polygon",
-                "radius": null,
-                "center": null,
-                "device_id": null,
-                "speed_limit": 0,
-                "diem_rate_id": null
-            }
-        ]
-    },
-    "status": 1
-}
+            "currentFatiqueStatus": null,
+            "currentDOV2": null,
+            "gsm_no": "085192369585",
+            "no_aset": "",
+            "group_nm": "Karawang",
+            "nopol": "1298",
+            "company_nm": "PIONIR BETON",
+            "totalkm_today": {
+                "total_km": 0.0,
+                "start_date_counting": "0001-01-01T00:00:00+07:00"
+            },
+            "car_type": "MIXER",
+            "fuel_used_gps": null,
+            "rfid_driver": null,
+            "currentRuteGeoStatus": null,
+            "currentDMSScoreStatus": null,
+            "fuelSensorStatus": null,
+            "weightSensorStatus": null,
+            "currentDOV3": null,
+            "car_model": "",
+            "input2": 0,
+            "input1": 0,
+            "gps_satelit": 0,
+            "gsm_signal": 0,
+            "addr": "0.08 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+            "sos": 0,
+            "acc": 0,
+            "is_alarm": 0,
+            "kode_pos": "41371",
+            "provinsi": "Jawa Barat",
+            "kota": "",
+            "kec": "",
+            "alarm_nm": "",
+            "report_nm": "Unlocated",
+            "direction": "0000",
+            "currentStatusVehicle": {
+                "status": 0,
+                "ket": "Parking",
+                "driving": null,
+                "parking": {
+                    "start_time": "2023-03-27T21:42:41+07:00",
+                    "stop_time": "0001-01-01T00:00:00+07:00",
+                    "duration": {
+                        "value": 36984.7912772,
+                        "text": "10 jam, 16 menit"
+                    },
+                    "lon": 107.32196807861328,
+                    "lat": -6.3614840507507324,
+                    "addr": "0.08 km of Plant Karawang,Kutamekar, Jawa Barat, 41371",
+                    "geo_location_id": 18063,
+                    "geo_area_id": 0,
+                    "geo_location_nm": "Plant Karawang",
+                    "geo_area_nm": "",
+                    "geo_location_code": "18",
+                    "geo_area_code": "",
+                    "fuel_consumption": 0.0
+                },
+                "idle": null,
+                "rfid_driver": null,
+                "moving": null
+            },
+            "driver_nm": "",
+            "rfid": null,
+            "gps_sn": "44000338",
+            "gps_time": "2023-03-28T07:10:08+07:00",
+            "stime": "2023-03-28T07:29:43.465+07:00",
+            "input3": 0,
+            "input4": 0,
+            "output1": 0,
+            "output2": 0,
+            "speed": 0.0,
+            "odometer": 76307.0,
+            "lat": -6.3614840507507324,
+            "lon": 107.32196807861328,
+            "fuel_level": 0.0,
+            "battery_percent": 0.0,
+            "main_power_voltage": 0.0,
+            "temperatur2": null,
+            "temperatur1": null,
+            "input_analog2": 0.0,
+            "input_analog": null
+        },
