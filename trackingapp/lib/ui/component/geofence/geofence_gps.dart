@@ -15,12 +15,7 @@ class GeofenceGPSMap extends StatelessWidget {
       height: Get.height * 0.67,
       width: Get.width,
       child: Obx(
-        () => (Get.find<GeofenceController>()
-                .listGeofence
-                .value!
-                .geofencesItems!
-                .geofences
-                .isEmpty)
+        () => (Get.find<GeofenceController>().isLoading.value)
             ? const Center(
                 child: CircularProgressIndicator(),
               )

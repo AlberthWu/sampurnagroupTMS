@@ -26,8 +26,7 @@ class DeviceController extends GetxController {
   var markers = RxSet<Marker>();
   var markersDetail = RxSet<Marker>();
 
-  late BitmapDescriptor iconAlias;
-  late Uint8List theIcon;
+  // late BitmapDescriptor iconAlias;
 
   Dio dio = Dio();
 
@@ -158,31 +157,39 @@ class DeviceController extends GetxController {
   //       ImageConfiguration(), "assets/truck1.png");
   // }
 
-  Future<Uint8List> getBytesFromAsset(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
-    ui.FrameInfo fi = await codec.getNextFrame();
-    theIcon = (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-    return theIcon;
-  }
+  // getBytesFromAsset(String path, int width) async {
+  //   ByteData data = await rootBundle.load(path);
+  //   ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+  //       targetWidth: width);
+  //   ui.FrameInfo fi = await codec.getNextFrame();
+  //   theIcon = (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+  //       .buffer
+  //       .asUint8List();
+  //   return theIcon;
+  // }
 
   createMarkers() async {
     // final BitmapDescriptor markIcons = BitmapDescriptor.fromAssetImage(
     //     ImageConfiguration(), "assets/truck1.png");
     // final Uint8List iconAlias =
-    //     await getBytesFromAsset('assets/truck1.png', 100);
-    BitmapDescriptor aliasIcon = await BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(150, 150), devicePixelRatio: 15),
-            'assets/truck1.png')
-        .then((value) => iconAlias = value);
+    //     await getBytesFromAsset('assets/truck1.png', 500);
+    final ByteData data = await rootBundle.load('assets/truck1.png');
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetHeight: 200);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    final Uint8List iconAlias =
+        (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+            .buffer
+            .asUint8List();
+    // BitmapDescriptor aliasIcon = await BitmapDescriptor.fromAssetImage(
+    //         ImageConfiguration(size: Size(150, 150), devicePixelRatio: 15),
+    //         'assets/truck1.png')
+    //     .then((value) => iconAlias = value);
     itemsModel.forEach(
       (element) async {
         markers.add(Marker(
           markerId: MarkerId(element.id.toString()),
-          icon: aliasIcon,
+          icon: BitmapDescriptor.fromBytes(iconAlias),
           position: LatLng(element.lat, element.lng),
           infoWindow: InfoWindow(
             title: element.name,

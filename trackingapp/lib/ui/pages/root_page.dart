@@ -21,11 +21,11 @@ class RootPage extends StatelessWidget {
           unselectedLabelStyle: TextStyle(color: MyStyle.secondaryColor),
           selectedItemColor: MyStyle.buttonColor,
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
             BottomNavigationBarItem(icon: Icon(Icons.gps_fixed), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Geofence'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.mark_as_unread), label: 'History'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Login'),
           ],
           currentIndex: tc.selectedIndex.value,
           onTap: tc.onItemTapped,
@@ -50,10 +50,10 @@ class MyTabController extends GetxController
   final RxInt selectedIndex = 0.obs;
 
   final List<Widget> widgetOptions = <Widget>[
-    ProfilePage(),
     HomePage(),
     GeofencingPage(),
     HistoryPage(),
+    ProfilePage(),
   ];
 
   void onItemTapped(int index) {

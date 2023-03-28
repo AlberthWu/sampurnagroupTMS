@@ -16,17 +16,11 @@ class ListGeofence extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Obx(() => (Get.find<GeofenceController>().isLoading.value)
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: Get.height * 0.5,
-                  ),
-                  const CircularProgressIndicator(
-                    color: MyStyle.primaryColor,
-                    strokeWidth: 5,
-                  ),
-                ],
+            ? Center(
+                child: const CircularProgressIndicator(
+                  color: MyStyle.primaryColor,
+                  strokeWidth: 5,
+                ),
               )
             : ListView(
                 scrollDirection: Axis.horizontal,

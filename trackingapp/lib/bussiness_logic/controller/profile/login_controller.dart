@@ -1,3 +1,78 @@
+// import 'package:dio/dio.dart';
+// import 'package:get/get.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// class LoginController extends GetxController {
+//   final _dio = Dio();
+//   final _baseUrl = 'https://api.sampurna-group.com/v2/users';
+
+//   final email = ''.obs;
+//   final password = ''.obs;
+//   final isLoggedIn = false.obs;
+
+//   @override
+//   void onInit() {
+//     super.onInit();
+//     _dio.interceptors.add(
+//       InterceptorsWrapper(onRequest: (options, handler) async {
+//         final prefs = await SharedPreferences.getInstance();
+//         final cookies = prefs.getStringList('cookies') ?? [];
+//         options.headers.addAll({'Cookie': cookies});
+//         print(cookies);
+//         print(email);
+//         print(password);
+//         return handler.next(options);
+//       }, onResponse: (response, handler) async {
+//         final prefs = await SharedPreferences.getInstance();
+//         final cookies = response.headers['set-cookie'];
+//         if (cookies != null) {
+//           prefs.setStringList('cookies', cookies);
+//         }
+//         return handler.next(response);
+//       }),
+//     );
+//   }
+
+//   Future<void> login() async {
+//     try {
+//       final response = await _dio.post('$_baseUrl/login',
+//           data: {'email': email.value, 'password': password.value});
+//       if (response.statusCode == 200) {
+//         isLoggedIn.value = true;
+//       } else {
+//         isLoggedIn.value = false;
+//       }
+//     } catch (e) {
+//       isLoggedIn.value = false;
+//     }
+//   }
+
+//   Future<void> refresh() async {
+//     try {
+//       final response = await _dio.post('$_baseUrl/refresh');
+//       if (response.statusCode == 200) {
+//         isLoggedIn.value = true;
+//       } else {
+//         isLoggedIn.value = false;
+//       }
+//     } catch (e) {
+//       isLoggedIn.value = false;
+//     }
+//   }
+
+//   Future<void> logout() async {
+//     try {
+//       final response = await _dio.post('$_baseUrl/logout');
+//       if (response.statusCode == 200) {
+//         isLoggedIn.value = false;
+//         print('success');
+//       }
+//     } catch (e) {
+//       isLoggedIn.value = false;
+//     }
+//   }
+// }
+
 import 'dart:async';
 
 import 'package:dio/dio.dart';
@@ -23,7 +98,7 @@ class LoginController extends GetxController {
         'email': email,
         'password': password,
       });
-
+      print(response);
       final headers = response.headers.map;
       final cookie = headers['set-cookie'];
       if (cookie != null) {
@@ -34,19 +109,21 @@ class LoginController extends GetxController {
         // });
       }
       isLoggedIn.value = true;
-      Timer.periodic(Duration(seconds: 11), (timer) {
-        print(cookie);
-      });
+      print('ini login' + cookie.toString());
     } catch (e) {}
   }
 
   Future<void> refreshSession() async {
     try {
       final token = await box.read('cookies');
+
       if (token != null) {
         dio.options.headers['cookie'] = token;
         await dio.post('/refresh');
         isLoggedIn.value = true;
+        final respons = await dio.post('/refresh');
+        print(await dio.post('/refresh'));
+        print('ini refresh' + token);
       }
     } catch (e) {
       print(e);
@@ -61,7 +138,9 @@ class LoginController extends GetxController {
         await dio.post('/logout');
         await box.remove('cookies');
       }
+
       isLoggedIn.value = false;
+      print('ini logout' + token);
     } catch (e) {}
   }
 

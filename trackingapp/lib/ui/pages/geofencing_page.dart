@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/geofence/geofence_controller.dart';
-import 'package:trackingapp/ui/component/devices/gps.dart';
 import 'package:trackingapp/ui/component/geofence/geofence_gps.dart';
 import 'package:trackingapp/ui/component/geofence/list_geofence.dart';
 
@@ -22,7 +21,7 @@ class GeofencingPage extends StatelessWidget {
               new Container(
                 height: Get.height * 0.16,
                 child: ListGeofence(),
-              )
+              ),
             ],
           ),
         );

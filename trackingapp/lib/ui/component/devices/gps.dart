@@ -152,10 +152,13 @@ class GPSMap extends StatelessWidget {
                 ..add(
                     Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
                 ..add(Factory<VerticalDragGestureRecognizer>(
-                    () => VerticalDragGestureRecognizer())),
+                    () => VerticalDragGestureRecognizer()))
+                ..add(Factory<OneSequenceGestureRecognizer>(
+                    () => new EagerGestureRecognizer())),
               initialCameraPosition: const CameraPosition(
                   target: LatLng(-6.3263292, 106.603353), zoom: 12),
               markers: listDevice.markers,
+
               // onTap: ((argument) => Get.to(DeviceDetail(detailData, deviceId))),
             )),
     );
