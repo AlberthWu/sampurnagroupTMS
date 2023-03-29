@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/device_easy_go_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
+import 'package:trackingapp/ui/pages/details_page_easy_go.dart';
 
 class ListDeviceEasyGo extends StatelessWidget {
   const ListDeviceEasyGo({super.key});
@@ -28,22 +29,16 @@ class ListDeviceEasyGo extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Checkbox(
-                              value: Get.find<DeviceEasyGoController>()
-                                  .isShow
-                                  .value,
-                              onChanged: ((
-                                value,
-                              ) {
-                                Get.find<DeviceEasyGoController>()
-                                    .isShow
-                                    .value = value!;
+                              value: data.selected,
+                              onChanged: ((value) {
+                                data.selected = value!;
                                 Get.find<DeviceEasyGoController>().onReady();
                               })),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                data.nopol ?? '0',
+                                data.nopol,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Row(
@@ -63,7 +58,9 @@ class ListDeviceEasyGo extends StatelessWidget {
                             color: (data.acc == 0) ? Colors.red : Colors.green,
                           ),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(DeviceDetailsEasyGo(data));
+                              },
                               icon: Icon(Icons.keyboard_arrow_right))
                         ],
                       ),

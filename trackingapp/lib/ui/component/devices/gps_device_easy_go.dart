@@ -10,10 +10,6 @@ import 'package:trackingapp/bussiness_logic/controller/devices/device_easy_go_co
 class GPSDeviceEasyGo extends StatelessWidget {
   const GPSDeviceEasyGo({super.key});
 
-  // latLng(){
-  //   for(var i in )
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => (Get.find<DeviceEasyGoController>().isLoading.value)

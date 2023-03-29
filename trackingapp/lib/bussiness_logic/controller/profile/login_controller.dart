@@ -121,7 +121,7 @@ class LoginController extends GetxController {
         dio.options.headers['cookie'] = token;
         await dio.post('/refresh');
         isLoggedIn.value = true;
-        final respons = await dio.post('/refresh');
+        // final respons = await dio.post('/refresh');
         print(await dio.post('/refresh'));
         print('ini refresh' + token);
       }

@@ -26,7 +26,7 @@ class RootPage extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Geofence'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.mark_as_unread), label: 'History'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Login'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
           currentIndex: tc.selectedIndex.value,
           onTap: tc.onItemTapped,
@@ -51,8 +51,8 @@ class MyTabController extends GetxController
   final RxInt selectedIndex = 0.obs;
 
   final List<Widget> widgetOptions = <Widget>[
-    // HomePage(),
-    DeviceEasyGo(),
+    HomePage(),
+    // DeviceEasyGo(),
     GeofencingPage(),
     HistoryPage(),
     ProfilePage(),

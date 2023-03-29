@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/device_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
-import 'package:trackingapp/ui/component/details/driver_info.dart';
-import 'package:trackingapp/ui/component/details/general_info.dart';
-import 'package:trackingapp/ui/component/details/location_info.dart';
-import 'package:trackingapp/ui/component/details/recent_events_info.dart';
-import 'package:trackingapp/ui/component/details/sensors_info.dart';
-import 'package:trackingapp/ui/component/details/service_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/driver_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/general_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/location_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/recent_events_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/sensors_info.dart';
+import 'package:trackingapp/ui/component/details/transtrack/service_info.dart';
 
 class DetailContent extends StatelessWidget {
   DetailContent(this.detailData, {super.key});

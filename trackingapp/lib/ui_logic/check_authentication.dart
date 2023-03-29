@@ -5,6 +5,7 @@ import 'package:trackingapp/bussiness_logic/controller/profile/login_controller.
 import 'package:trackingapp/ui/pages/login_page.dart';
 import 'package:trackingapp/ui/pages/profile_component.dart';
 import 'package:trackingapp/ui/pages/profile_page.dart';
+import 'package:trackingapp/ui/pages/root_page.dart';
 
 class AuthenticationCheck extends StatelessWidget {
   const AuthenticationCheck({super.key});
@@ -12,7 +13,7 @@ class AuthenticationCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => (Get.find<LoginController>().isLoggedIn.value)
-        ? LoginPage()
-        : ProfileComponent());
+        ? RootPage()
+        : LoginPage());
   }
 }

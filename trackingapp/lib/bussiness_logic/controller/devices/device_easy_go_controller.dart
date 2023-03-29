@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_easygo_repository.dart';
+import 'package:trackingapp/ui/pages/details_page_easy_go.dart';
 
 class DeviceEasyGoController extends GetxController {
   final Rxn<LastPositionModel> listDevice = Rxn<LastPositionModel>();
   final RxList<Data> data = RxList();
+  final RxList<Data> newData = RxList();
 
   var isLoading = false.obs;
   var isError = false.obs;
@@ -18,7 +20,9 @@ class DeviceEasyGoController extends GetxController {
 
   Dio dio = Dio();
 
-  var cluster = Fluster;
+  // final Fluster<Data> fluster = Fluster<Data>(
+  //   minZoom: min
+  // );
 
   @override
   void onInit() {
@@ -51,24 +55,55 @@ class DeviceEasyGoController extends GetxController {
       throw Exception(e);
     } finally {
       for (var i in data) {
-        if (isShow == true) {
+        if (i.selected == true) {
           createMarkers();
+        } else {
+          deleteMarkers();
         }
       }
     }
   }
 
+  void cameraSelected() {
+    data.forEach(
+      (element) {
+        final position =
+            CameraPosition(target: LatLng(element.lat, element.lon), zoom: 12);
+      },
+    );
+  }
+
   createMarkers() async {
     data.forEach((element) async {
-      markers.add(
-        Marker(
-            markerId: MarkerId(element.nopol ?? ''),
-            icon: BitmapDescriptor.defaultMarker,
-            position: LatLng(element.lat, element.lon),
-            infoWindow: InfoWindow(
+      final marker = Marker(
+          markerId: MarkerId(element.nopol),
+          icon: BitmapDescriptor.defaultMarker,
+          position: LatLng(element.lat, element.lon),
+          infoWindow: InfoWindow(
               title: element.nopol,
-            )),
-      );
+              onTap: () {
+                final data = element;
+                Get.to(DeviceDetailsEasyGo(data));
+              }));
+
+      if (element.selected == true) {
+        markers.add(marker);
+      }
+    });
+  }
+
+  deleteMarkers() {
+    data.forEach((element) async {
+      var marker = Marker(
+          markerId: MarkerId(element.nopol),
+          icon: BitmapDescriptor.defaultMarker,
+          position: LatLng(element.lat, element.lon),
+          infoWindow: InfoWindow(
+            title: element.nopol,
+          ));
+      if (element.selected == true) {
+        // markers.remove(marker);
+      }
     });
   }
 }

@@ -52,11 +52,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyStyle.primaryColor,
-      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(80.0),
           child: Form(
               child: Column(
             children: [
@@ -84,12 +82,6 @@ class LoginPage extends StatelessWidget {
                         emailController.text, passwordController.text);
                   },
                   child: Text('Login')),
-              ElevatedButton(
-                  onPressed: () {
-                    print(Get.find<LoginController>().box.getValues());
-                  },
-                  child: Text('Cek Box')),
-              Text(Get.find<LoginController>().box.getValues().toString())
             ],
           )),
         ),

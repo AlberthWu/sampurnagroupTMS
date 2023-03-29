@@ -21,7 +21,6 @@ class Data {
   late String? gsmNo,
       noAsset,
       groupNm,
-      nopol,
       companyNm,
       carType,
       carModel,
@@ -37,12 +36,14 @@ class Data {
       gpsSn,
       gpsTime,
       sTime;
+  late String nopol;
   late double lat, lon, odometer, speed, bateryPercent, mainPowerVoltage;
   late CurrentGeoLocationStatus? currentGeoLocationStatus;
   late TotalKM totalkmYtd, totalkmMtd;
   late CurrentUtilisasiStatus? currentUtilisasiStatus;
   late TotalkmToday totalkmToday;
   late CurrentStatusVehicle? currentStatusVehicle;
+  late bool selected;
 
   Data(
       this.altitude,
@@ -81,7 +82,8 @@ class Data {
       this.currentUtilisasiStatus,
       this.totalkmMtd,
       this.totalkmToday,
-      this.totalkmYtd);
+      this.totalkmYtd,
+      this.selected);
 
   Data.fromJSON(JSON json) {
     altitude = json['altitude'];
@@ -126,6 +128,7 @@ class Data {
     totalkmMtd = TotalKM.fromJSON(json['totalkm_mtd']);
     totalkmToday = TotalkmToday.fromJSON(json['totalkm_today']);
     totalkmYtd = TotalKM.fromJSON(json['totalkm_ytd']);
+    selected = false;
   }
 }
 

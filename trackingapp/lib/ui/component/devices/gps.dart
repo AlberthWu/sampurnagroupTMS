@@ -137,12 +137,9 @@ class GPSMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Get.height * 0.4,
-      child: Obx(() => (listDevice.listDevice.isEmpty)
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
+    return Obx(
+      () => (listDevice.isLoading.value)
+          ? const Center()
           : GoogleMap(
               gestureRecognizers: Set()
                 ..add(
@@ -160,7 +157,7 @@ class GPSMap extends StatelessWidget {
               markers: listDevice.markers,
 
               // onTap: ((argument) => Get.to(DeviceDetail(detailData, deviceId))),
-            )),
+            ),
     );
   }
 }

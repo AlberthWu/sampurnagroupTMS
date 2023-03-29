@@ -1,0 +1,34 @@
+To import data from an API to Firestore and always update the Firestore document using Flutter, you can use the following steps:
+
+    Add the cloud_firestore and http packages to your Flutter project dependencies in pubspec.yaml.
+    Initialize the Firestore instance and make an HTTP request to the API endpoint to get the data.
+    Parse the response data into a JSON object.
+    Iterate over the JSON object and create or update the Firestore documents using the set() method with the merge option.
+    Handle any errors that may occur.
+
+Here's an example code snippet in Flutter that demonstrates this:
+
+dart
+
+import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Initialize Firestore database
+final FirebaseFirestore db = FirebaseFirestore.instance;
+
+// Make API request to get data
+final String apiUrl = 'https://telematics.transtrack.id/api/get_devices';
+final String apiHash = '\$2y\$10\$FAIEorvAA7Z7V/pDrVON7.w7LMRfcNak/SjyfvtEnhptKcXM3IgMy';
+final response = await http.get('$apiUrl?user_api_hash=$apiHash');
+final data = json.decode(response.body);
+
+// Iterate over data and update Firestore documents
+for (final device in data) {
+  final deviceId = device['id'];
+
+  // Create or update Firestore document
+  final deviceRef = db.collection('devices').doc(deviceId);
+  await deviceRef.set(device, SetOptions(merge: true));
+}
+
+In this example, we're making an HTTP request to the API endpoint using the http package, parsing the response data into a JSON object using the json.decode() method, and then iterating over the data to create or update Firestore documents using the set() method with the SetOptions(merge: true) parameter. This ensures that any existing data in the document is preserved and not overwritten.

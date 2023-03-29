@@ -15,9 +15,9 @@ class HomePage extends StatelessWidget {
           appBar: AppBar(title: const Text('Maps')),
           body: ListView(
             children: <Widget>[
-              Container(height: Get.height * 0.33, child: GPSMap(listDevice)),
+              Container(height: Get.height * 0.5, child: GPSMap(listDevice)),
               new Container(
-                height: Get.height * 0.5,
+                height: Get.height * 0.33,
                 child: ListDevice(),
               )
             ],

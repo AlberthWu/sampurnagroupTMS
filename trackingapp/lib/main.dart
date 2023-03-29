@@ -8,6 +8,7 @@ import 'package:trackingapp/bussiness_logic/controller/geofence/geofence_control
 import 'package:trackingapp/bussiness_logic/controller/profile/login_controller.dart';
 import 'package:trackingapp/ui/pages/home_page.dart';
 import 'package:trackingapp/ui/pages/root_page.dart';
+import 'package:trackingapp/ui_logic/check_authentication.dart';
 
 void main() async {
   Get.lazyPut(() => LoginController());
@@ -27,8 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'GPS',
-      theme: ThemeData(primarySwatch: Colors.amber, useMaterial3: false),
-      home: const RootPage(),
+      theme: ThemeData(primarySwatch: Colors.amber, useMaterial3: true),
+      home: const AuthenticationCheck(),
     );
   }
 }

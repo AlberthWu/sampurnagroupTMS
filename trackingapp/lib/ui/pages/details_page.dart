@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_model.dart';
-import 'package:trackingapp/ui/component/details/detail_content.dart';
-import 'package:trackingapp/ui/component/details/details_gps.dart';
+import 'package:trackingapp/ui/component/details/transtrack/detail_content.dart';
+import 'package:trackingapp/ui/component/details/transtrack/details_gps.dart';
 
 class DeviceDetail extends StatelessWidget {
   const DeviceDetail(this.detailData, Future deviceId, {super.key});
