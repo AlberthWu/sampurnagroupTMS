@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
-import 'package:flutter_google_maps_widget_cluster_markers/flutter_google_maps_widget_cluster_markers.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
 import 'package:trackingapp/bussiness_logic/services/device/device_easygo_repository.dart';
@@ -16,8 +18,10 @@ class DeviceEasyGoController extends GetxController {
   var errmsg = "".obs;
 
   final RxSet<Marker> markers = RxSet<Marker>();
-  GoogleMapWidgetClusterMarkersController clusterMarkersController =
-      GoogleMapWidgetClusterMarkersController();
+  late ClusterManager clusterManager;
+  Completer<GoogleMapController> controller = Completer();
+
+  List<NewPosisi> items = [];
 
   Dio dio = Dio();
 
@@ -29,9 +33,24 @@ class DeviceEasyGoController extends GetxController {
 
   @override
   void onReady() {
-    onInit();
+    // onInit()
+    for (var i in data) if (i.selected == true) createMarkers();
     super.onReady();
   }
+
+  // ClusterManager<NewPosisi> _initClusterManager() {
+  //   return ClusterManager<NewPosisi>(items, _updateMarkers,
+  //       markerBuilder: _markerBuilder);
+  // }
+
+  // void _updateMarkers(RxSet<Marker> markers) {
+  //   markers = markers;
+  // }
+
+  // Future<Marker> Function(Cluster<NewPosisi>) get _markerBuilder =>
+  //     (Cluster) async {
+  //       return Marker(markerId: MarkerId(cluster.))
+  //     };
 
   Future deviceList() async {
     isLoading(false);
@@ -44,6 +63,7 @@ class DeviceEasyGoController extends GetxController {
       listDevice.value = result;
       for (var i in listDevice.value!.data) {
         data.add(i);
+        items.add(NewPosisi(i.nopol, LatLng(i.lat, i.lon)));
       }
       return listDevice;
     } catch (e) {
@@ -56,7 +76,7 @@ class DeviceEasyGoController extends GetxController {
     }
   }
 
-  cameraSelected() {
+  void cameraSelected() {
     data.forEach(
       (element) {
         final position =
@@ -101,4 +121,11 @@ class DeviceEasyGoController extends GetxController {
       }
     });
   }
+}
+
+class NewPosisi {
+  final String nopol;
+  final LatLng posisi;
+
+  NewPosisi(this.nopol, this.posisi);
 }

@@ -32,8 +32,7 @@ class ListDeviceEasyGo extends StatelessWidget {
                                   onChanged: ((value) {
                                     data.selected.value = value ?? false;
                                     // print('ini onchanged ${{data.selected}}');
-                                    Get.find<DeviceEasyGoController>()
-                                        .onReady();
+                                    Get.find<DeviceEasyGoController>().onInit();
                                   })),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
