@@ -52,8 +52,8 @@ class GeofenceGPSMapDetails extends StatelessWidget {
   createPolygon() {
     final List<dynamic> point = jsonDecode(i.coordinates);
     _pointsLatLang = point.map((e) => LatLng(e['lat'], e['lng'])).toList();
-    print(_pointsLatLang);
-    print(point);
+    // print(_pointsLatLang);
+    // print(point);
     return _pointsLatLang;
   }
 }

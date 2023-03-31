@@ -58,7 +58,7 @@ class ProfileComponent extends StatelessWidget {
               ),
             ElevatedButton(
                 onPressed: () {
-                  print(Get.find<LoginController>().box.getValues());
+                  // print(Get.find<LoginController>().box.getValues());
                 },
                 child: Text('Cek Box')),
             Text(Get.find<LoginController>().box.getValues().toString())

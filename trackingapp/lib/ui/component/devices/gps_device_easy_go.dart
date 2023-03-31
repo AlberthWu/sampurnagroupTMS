@@ -25,8 +25,8 @@ class GPSDeviceEasyGo extends StatelessWidget {
                   () => VerticalDragGestureRecognizer()))
               ..add(Factory<OneSequenceGestureRecognizer>(
                   () => new EagerGestureRecognizer())),
-            initialCameraPosition: CameraPosition(
-                target: LatLng(-6.3263292, 106.603353), zoom: 12),
+            initialCameraPosition: const CameraPosition(
+                target: LatLng(-6.3263292, 106.603353), zoom: 8),
             markers: Get.find<DeviceEasyGoController>().markers,
           ));
   }

@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'GPS',
       theme: ThemeData(primarySwatch: Colors.amber, useMaterial3: true),
-      home: const AuthenticationCheck(),
+      // home: const AuthenticationCheck(),
+      home: const RootPage(),
     );
   }
 }

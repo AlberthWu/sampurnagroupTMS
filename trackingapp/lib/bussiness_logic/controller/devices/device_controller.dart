@@ -15,6 +15,8 @@ import 'dart:ui' as ui;
 
 class DeviceController extends GetxController {
   final RxList<DeviceModel> listDevice = RxList();
+  // final _listDevice = Stream<List<DeviceModel>>.value([]).obs;
+  // Stream<List<DeviceModel>> get listDevice => _listDevice.value;
   // final DeviceProvider deviceProvider = Get.find();
   var isLoading = false.obs;
   var isError = false.obs;
@@ -36,6 +38,12 @@ class DeviceController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    deviceList();
+    super.onReady();
+  }
+
   Future deviceList() async {
     isLoading(false);
     try {
@@ -44,6 +52,7 @@ class DeviceController extends GetxController {
       isLoading(false);
       isError(false);
       listDevice.value = result;
+      // _listDevice.value = Stream.fromIterable([result]);
       for (var i in listDevice.value) {
         for (var j in i.items) {
           itemsModel.add(j);

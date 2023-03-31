@@ -13,8 +13,8 @@ class DeviceEasyGoApi {
       dio.options.headers["Content-Type"] = "application/json";
       dio.options.headers["Token"] = token;
       final response = await dio.post('$url/report/lastposition',
-          data: {"list_nopol": null, "status_vechile": 0, "geo_code": null});
-      print(response);
+          data: {"list_nopol": null, "status_vechile": null, "geo_code": null});
+      // print(response);
       return LastPositionModel.fromJSON(response.data);
     } catch (e) {}
   }

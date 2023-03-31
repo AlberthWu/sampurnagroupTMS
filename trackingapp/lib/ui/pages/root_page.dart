@@ -51,8 +51,8 @@ class MyTabController extends GetxController
   final RxInt selectedIndex = 0.obs;
 
   final List<Widget> widgetOptions = <Widget>[
-    HomePage(),
-    // DeviceEasyGo(),
+    // HomePage(),
+    DeviceEasyGo(),
     GeofencingPage(),
     HistoryPage(),
     ProfilePage(),

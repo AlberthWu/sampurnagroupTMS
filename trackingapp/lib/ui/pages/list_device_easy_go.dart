@@ -26,7 +26,8 @@ class DeviceEasyGo extends StatelessWidget {
                 child: GPSDeviceEasyGo(),
               ),
               new Container(
-                  height: Get.height * 0.33, child: ListDeviceEasyGo())
+                  height: Get.height * 0.33,
+                  child: ListDeviceEasyGo(controller))
             ],
           ),
         );

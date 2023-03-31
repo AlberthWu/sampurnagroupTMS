@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fluster/fluster.dart';
+import 'package:flutter_google_maps_widget_cluster_markers/flutter_google_maps_widget_cluster_markers.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
@@ -14,15 +14,12 @@ class DeviceEasyGoController extends GetxController {
   var isLoading = false.obs;
   var isError = false.obs;
   var errmsg = "".obs;
-  var isShow = false.obs;
 
-  var markers = RxSet<Marker>();
+  final RxSet<Marker> markers = RxSet<Marker>();
+  GoogleMapWidgetClusterMarkersController clusterMarkersController =
+      GoogleMapWidgetClusterMarkersController();
 
   Dio dio = Dio();
-
-  // final Fluster<Data> fluster = Fluster<Data>(
-  //   minZoom: min
-  // );
 
   @override
   void onInit() {
@@ -32,7 +29,7 @@ class DeviceEasyGoController extends GetxController {
 
   @override
   void onReady() {
-    deviceList();
+    onInit();
     super.onReady();
   }
 
@@ -41,7 +38,7 @@ class DeviceEasyGoController extends GetxController {
     try {
       isLoading(true);
       final result = await DeviceEasyGoApi().getDeviceEasyGo();
-      print(result);
+      // print(result);
       isLoading(false);
       isError(false);
       listDevice.value = result;
@@ -54,42 +51,40 @@ class DeviceEasyGoController extends GetxController {
       isError(true);
       throw Exception(e);
     } finally {
-      for (var i in data) {
-        if (i.selected == true) {
-          createMarkers();
-        } else {
-          deleteMarkers();
-        }
-      }
+      createMarkers();
+      cameraSelected();
     }
   }
 
-  void cameraSelected() {
+  cameraSelected() {
     data.forEach(
       (element) {
         final position =
             CameraPosition(target: LatLng(element.lat, element.lon), zoom: 12);
+        // return position;
       },
     );
   }
 
-  createMarkers() async {
+  Future createMarkers() async {
     data.forEach((element) async {
-      final marker = Marker(
+      // if (element.selected.value == true)
+      markers.add(
+        Marker(
           markerId: MarkerId(element.nopol),
           icon: BitmapDescriptor.defaultMarker,
           position: LatLng(element.lat, element.lon),
           infoWindow: InfoWindow(
-              title: element.nopol,
-              onTap: () {
-                final data = element;
-                Get.to(DeviceDetailsEasyGo(data));
-              }));
-
-      if (element.selected == true) {
-        markers.add(marker);
-      }
+            title: element.nopol,
+            onTap: () {
+              final data = element;
+              Get.to(DeviceDetailsEasyGo(data));
+            },
+          ),
+        ),
+      );
     });
+    return markers;
   }
 
   deleteMarkers() {

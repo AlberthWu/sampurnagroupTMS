@@ -98,7 +98,7 @@ class LoginController extends GetxController {
         'email': email,
         'password': password,
       });
-      print(response);
+      // print(response);
       final headers = response.headers.map;
       final cookie = headers['set-cookie'];
       if (cookie != null) {
@@ -109,7 +109,7 @@ class LoginController extends GetxController {
         // });
       }
       isLoggedIn.value = true;
-      print('ini login' + cookie.toString());
+      // print('ini login' + cookie.toString());
     } catch (e) {}
   }
 
@@ -122,11 +122,11 @@ class LoginController extends GetxController {
         await dio.post('/refresh');
         isLoggedIn.value = true;
         // final respons = await dio.post('/refresh');
-        print(await dio.post('/refresh'));
-        print('ini refresh' + token);
+        // print(await dio.post('/refresh'));
+        // print('ini refresh' + token);
       }
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 
@@ -140,7 +140,7 @@ class LoginController extends GetxController {
       }
 
       isLoggedIn.value = false;
-      print('ini logout' + token);
+      // print('ini logout' + token);
     } catch (e) {}
   }
 

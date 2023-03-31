@@ -56,6 +56,8 @@ class ListDevice extends StatelessWidget {
                                               .isShow
                                               .value = value!;
                                           print(value);
+                                          Get.find<DeviceController>()
+                                              .onReady();
                                         })),
                                     Column(
                                       crossAxisAlignment:

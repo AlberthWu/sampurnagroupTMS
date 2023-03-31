@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:trackingapp/utils/utils.dart';
 
 class LastPositionModel {
@@ -10,9 +11,7 @@ class LastPositionModel {
   LastPositionModel.fromJSON(JSON json) {
     responseCode = json['ResponseCode'];
     responseMessage = json['ResponseMessage'];
-    data = json['Data'] == null
-        ? []
-        : (json['Data'] as List).map((e) => Data.fromJSON(e)).toList();
+    data = (json['Data'] as List).map((e) => Data.fromJSON(e)).toList();
   }
 }
 
@@ -43,7 +42,7 @@ class Data {
   late CurrentUtilisasiStatus? currentUtilisasiStatus;
   late TotalkmToday totalkmToday;
   late CurrentStatusVehicle? currentStatusVehicle;
-  late bool selected;
+  late RxBool selected;
 
   Data(
       this.altitude,
@@ -128,7 +127,7 @@ class Data {
     totalkmMtd = TotalKM.fromJSON(json['totalkm_mtd']);
     totalkmToday = TotalkmToday.fromJSON(json['totalkm_today']);
     totalkmYtd = TotalKM.fromJSON(json['totalkm_ytd']);
-    selected = false;
+    selected = false.obs;
   }
 }
 
