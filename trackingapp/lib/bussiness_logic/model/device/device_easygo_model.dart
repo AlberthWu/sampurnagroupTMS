@@ -11,7 +11,9 @@ class LastPositionModel {
   LastPositionModel.fromJSON(JSON json) {
     responseCode = json['ResponseCode'];
     responseMessage = json['ResponseMessage'];
-    data = (json['Data'] as List).map((e) => Data.fromJSON(e)).toList();
+    data = json['Data'] == null
+        ? []
+        : (json['Data'] as List).map((e) => Data.fromJSON(e)).toList();
   }
 }
 

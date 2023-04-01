@@ -6,12 +6,49 @@ import 'package:trackingapp/ui/component/devices/gps_device_easy_go.dart';
 import 'package:trackingapp/ui/pages/details_page_easy_go.dart';
 
 class ListDeviceEasyGo extends StatelessWidget {
-  ListDeviceEasyGo(DeviceEasyGoController controller, {super.key});
+  const ListDeviceEasyGo({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 50, 0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('Easy Go'),
+                  TextButton(
+                    onPressed: () {
+                      if (data.group_member.isNotEmpty) {
+                        Get.find<DeviceEasyGoController>().isShow.value =
+                            !Get.find<DeviceEasyGoController>().isShow.value;
+                      } else {
+                        Get.back();
+                        Future.delayed(const Duration(), (() {
+                          Get.until((route) => Get.currentRoute == '/');
+                          Future.delayed(const Duration(), (() {
+                            Get.find<GetTabController>().onItemTapped(2);
+                          }));
+                        }));
+                      }
+                    },
+                    style: const ButtonStyle(),
+                    child: (data.group_member.isNotEmpty)
+                        ? Text(
+                            key: const Key('hide_show'),
+                            Get.find<DeviceEasyGoController>().isShow.value
+                                ? 'Hide'
+                                : 'Show',
+                            style: const TextStyle(color: Colors.amber),
+                          )
+                        : const Text('You',
+                            style: TextStyle(color: Colors.amber)),
+                  ),
+                ],
+              ),
+            ),
             (Get.find<DeviceEasyGoController>().isLoading.value)
                 ? const Center()
                 : Column(

@@ -30,7 +30,7 @@ class DeviceEasyGo extends GetView<DeviceEasyGoController> {
           ),
           new Container(
             height: Get.height * 0.33,
-            child: ListDeviceEasyGo(controller),
+            child: ListDeviceEasyGo(),
           )
         ],
       ),
