@@ -7,14 +7,14 @@
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:trackingapp/bussiness_logic/controller/devices/device_easy_go_controller.dart';
 
-// class GPSDeviceEasyGo extends StatelessWidget {
-//   GPSDeviceEasyGo({super.key});
+// class GPSDevices extends StatelessWidget {
+//   GPSDevices({super.key});
 
 //   Completer<GoogleMapController> controllerGPS = Completer();
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return Obx(() => (Get.find<DeviceEasyGoController>().isLoading.value)
+//     return Obx(() => (Get.find<DevicesController>().isLoading.value)
 //         ? Center()
 //         : GoogleMap(
 //             mapType: MapType.normal,
@@ -29,17 +29,17 @@
 //                   () => new EagerGestureRecognizer())),
 //             initialCameraPosition: const CameraPosition(
 //                 target: LatLng(-6.3263292, 106.603353), zoom: 0),
-//             markers: Get.find<DeviceEasyGoController>().markers,
+//             markers: Get.find<DevicesController>().markers,
 //             onMapCreated: (GoogleMapController controller) {
 //               controllerGPS.complete(controller);
-//               Get.find<DeviceEasyGoController>()
+//               Get.find<DevicesController>()
 //                   .manager
 //                   .setMapId(controller.mapId);
 //             },
 //             onTap: (argument) {},
 //             onCameraMove:
-//                 Get.find<DeviceEasyGoController>().manager.onCameraMove,
-//             onCameraIdle: Get.find<DeviceEasyGoController>().manager.updateMap,
+//                 Get.find<DevicesController>().manager.onCameraMove,
+//             onCameraIdle: Get.find<DevicesController>().manager.updateMap,
 //           ));
 //   }
 // }
@@ -53,42 +53,126 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:trackingapp/bussiness_logic/controller/devices/device_easy_go_controller.dart';
+import 'package:trackingapp/bussiness_logic/controller/devices/devices_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
 
-class GPSDeviceEasyGo extends StatefulWidget {
-  const GPSDeviceEasyGo({super.key});
+class GPSDevices extends StatefulWidget {
+  const GPSDevices({super.key});
 
   @override
-  State<GPSDeviceEasyGo> createState() => _GPSDeviceEasyGoState();
+  State<GPSDevices> createState() => _GPSDevicesState();
 }
 
-class _GPSDeviceEasyGoState extends State<GPSDeviceEasyGo> {
+class _GPSDevicesState extends State<GPSDevices> {
   Completer<GoogleMapController> _controller = Completer();
 
-  late ClusterManager _manager;
+  late ClusterManager _managerEasyGo;
+  late ClusterManager _managerTranstrack;
 
-  Set<Marker> markers = Set();
+  Set<Marker> markersEasyGo = Set();
+  Set<Marker> markersTranstrack = Set();
 
   static const CameraPosition _kGooglePlex =
       CameraPosition(target: LatLng(-6.3263292, 106.603353), zoom: 9);
 
-  List<NewPosisi> items = Get.find<DeviceEasyGoController>().items;
+  List<NewPosisi> itemsEasyGo = Get.find<DevicesController>().items;
+  List<NewPosisi> itemsTranstrack = Get.find<DevicesController>().items2;
 
   @override
   void initState() {
-    _manager = _initClusterManager();
+    _managerTranstrack = ClusterManager<NewPosisi>(
+        itemsTranstrack, _updateMarkersTranstrack,
+        markerBuilder: _markerBuilder(Colors.blue),
+        stopClusteringZoom: 14,
+        levels: [
+          1,
+          4.25,
+          6.75,
+          8.25,
+          11.5,
+          14.5,
+          16.0,
+          16.5,
+          20.0,
+          27,
+          30,
+          36,
+          40
+        ]);
+    _managerEasyGo = ClusterManager<NewPosisi>(
+        itemsEasyGo, _updateMarkersEasyGo,
+        markerBuilder: _markerBuilder(Colors.red),
+        stopClusteringZoom: 14,
+        levels: [
+          1,
+          4.25,
+          6.75,
+          8.25,
+          11.5,
+          14.5,
+          16.0,
+          16.5,
+          20.0,
+          27,
+          30,
+          36,
+          40
+        ]);
+
     super.initState();
   }
 
-  ClusterManager _initClusterManager() {
-    return ClusterManager<NewPosisi>(items, _updateMarkers,
-        markerBuilder: _markerBuilder);
+  // ClusterManager _initClusterManagerEasyGo() {
+  //   return ClusterManager<NewPosisi>(itemsEasyGo, _updateMarkersEasyGo,
+  //       markerBuilder: _markerBuilderEasyGo,
+  //       stopClusteringZoom: 14,
+  //       levels: [
+  //         1,
+  //         4.25,
+  //         6.75,
+  //         8.25,
+  //         11.5,
+  //         14.5,
+  //         16.0,
+  //         16.5,
+  //         20.0,
+  //         27,
+  //         30,
+  //         36,
+  //         40
+  //       ]);
+  // }
+
+  // ClusterManager _initClusterManagerTranstrack() {
+  //   return ClusterManager<NewPosisi>(itemsTranstrack, _updateMarkersTranstrack,
+  //       markerBuilder: _markerBuilderTranstrack,
+  //       stopClusteringZoom: 14,
+  //       levels: [
+  //         1,
+  //         4.25,
+  //         6.75,
+  //         8.25,
+  //         11.5,
+  //         14.5,
+  //         16.0,
+  //         16.5,
+  //         20.0,
+  //         27,
+  //         30,
+  //         36,
+  //         40
+  //       ]);
+  // }
+
+  void _updateMarkersEasyGo(Set<Marker> markers) {
+    setState(() {
+      this.markersEasyGo = markers;
+    });
   }
 
-  void _updateMarkers(Set<Marker> markers) {
+  void _updateMarkersTranstrack(Set<Marker> markers) {
     setState(() {
-      this.markers = markers;
+      this.markersTranstrack = markers;
     });
   }
 
@@ -107,30 +191,41 @@ class _GPSDeviceEasyGoState extends State<GPSDeviceEasyGo> {
       initialCameraPosition: _kGooglePlex,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
-        _manager.setMapId(controller.mapId);
+        _managerEasyGo.setMapId(controller.mapId);
+        _managerTranstrack.setMapId(controller.mapId);
       },
       onTap: (argument) {},
-      onCameraMove: _manager.onCameraMove,
-      onCameraIdle: _manager.updateMap,
-      markers: markers,
+      onCameraMove: (position) {
+        _managerEasyGo.onCameraMove(position);
+        _managerTranstrack.onCameraMove(position);
+      },
+      onCameraIdle: () {
+        _managerEasyGo.updateMap();
+        _managerTranstrack.updateMap();
+      },
+      markers: markersEasyGo..addAll(markersTranstrack),
     );
   }
 
-  Future<Marker> Function(Cluster<NewPosisi>) get _markerBuilder =>
+  Future<Marker> Function(Cluster<NewPosisi>) _markerBuilder(Color color) =>
       (cluster) async {
         return Marker(
-            markerId: MarkerId(cluster.getId()),
-            position: cluster.location,
-            icon: await _getMarkerBitmap(cluster.isMultiple ? 125 : 75,
-                text: cluster.isMultiple ? cluster.count.toString() : null),
-            infoWindow: InfoWindow(title: cluster.items.first.nopol));
+          markerId: MarkerId(cluster.getId()),
+          position: cluster.location,
+          icon: await _getMarkerBitmap(cluster.isMultiple ? 125 : 75, color,
+              text: cluster.isMultiple ? cluster.count.toString() : null),
+          infoWindow: cluster.isMultiple
+              ? InfoWindow()
+              : InfoWindow(title: cluster.items.first.nopol),
+        );
       };
 
-  Future<BitmapDescriptor> _getMarkerBitmap(int size, {String? text}) async {
+  Future<BitmapDescriptor> _getMarkerBitmap(int size, Color color,
+      {String? text}) async {
     if (kIsWeb) size = (size / 2).floor();
     final PictureRecorder pictureRecorder = PictureRecorder();
     final Canvas canvas = Canvas(pictureRecorder);
-    final Paint paint1 = Paint()..color = Colors.orange;
+    final Paint paint1 = Paint()..color = color;
     final Paint paint2 = Paint()..color = Colors.white;
 
     canvas.drawCircle(Offset(size / 2, size / 2), size / 2.0, paint1);
