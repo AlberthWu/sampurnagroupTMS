@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trackingapp/bussiness_logic/controller/devices/device_easy_go_controller.dart';
+import 'package:trackingapp/bussiness_logic/controller/devices/devices_controller.dart';
+import 'package:trackingapp/ui/component/devices/all_device.dart';
 import 'package:trackingapp/ui/component/devices/gps_device_easy_go.dart';
 import 'package:trackingapp/ui/component/devices/list_device_easy_go.dart';
+import 'package:trackingapp/ui/pages/route_device.dart';
 
-class DeviceEasyGo extends GetView<DeviceEasyGoController> {
-  const DeviceEasyGo({super.key});
+class DevicePage extends GetView<DevicesController> {
+  const DevicePage({super.key});
 
   @override
   Widget build(_) {
@@ -17,7 +19,7 @@ class DeviceEasyGo extends GetView<DeviceEasyGoController> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.find<DeviceEasyGoController>().onInit();
+                Get.find<DevicesController>().onInit();
               },
               icon: Icon(Icons.refresh)),
         ],
@@ -25,12 +27,14 @@ class DeviceEasyGo extends GetView<DeviceEasyGoController> {
       body: ListView(
         children: <Widget>[
           Container(
-            height: Get.height * 0.5,
-            child: GPSDeviceEasyGo(),
+            height: Get.height * 0.45,
+            child: GPSDevices(),
           ),
           new Container(
-            height: Get.height * 0.33,
-            child: ListDeviceEasyGo(),
+            height: Get.height * 0.38,
+            // child: ListDeviceEasyGo(),
+            // child: AllDevice(),
+            child: RouteDevice(),
           )
         ],
       ),

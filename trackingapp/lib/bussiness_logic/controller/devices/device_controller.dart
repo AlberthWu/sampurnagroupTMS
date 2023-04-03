@@ -48,7 +48,7 @@ class DeviceController extends GetxController {
     isLoading(false);
     try {
       isLoading(true);
-      final result = await DeviceApi().getData(DeviceApiConst.path);
+      final result = await DeviceApiTranstrack().getDeviceTranstrack();
       isLoading(false);
       isError(false);
       listDevice.value = result;
