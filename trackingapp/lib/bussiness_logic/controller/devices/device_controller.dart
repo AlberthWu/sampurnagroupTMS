@@ -87,7 +87,7 @@ class DeviceController extends GetxController {
         markers.add(Marker(
           markerId: MarkerId(element.id.toString()),
           icon: BitmapDescriptor.defaultMarker,
-          position: LatLng(element.lat, element.lng),
+          position: LatLng(element.lat.toDouble(), element.lng.toDouble()),
           infoWindow: InfoWindow(
             title: element.name,
             snippet: element.name,

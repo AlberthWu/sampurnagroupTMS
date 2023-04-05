@@ -18,7 +18,7 @@ class SearchBar extends GetView<DeviceController> {
       children: <Widget>[
         Padding(
           padding:
-              const EdgeInsets.only(left: 8, right: 8.0, top: 10, bottom: 2),
+              const EdgeInsets.only(left: 0, right: 0.0, top: 10, bottom: 2),
           child: AnimSearchBar(
             rtl: true,
             // autoFocus: true,
@@ -27,7 +27,7 @@ class SearchBar extends GetView<DeviceController> {
             // color: MyStyle.primaryColor,
             // textFieldIconColor: MyStyle.secondaryColor,
             boxShadow: false,
-            width: MediaQuery.of(context).size.width * 0.945,
+            width: Get.width * 0.85,
             helpText: hintText(),
             textController: Get.find<DevicesController>().keywordController,
             onSuffixTap: () {},
@@ -64,6 +64,8 @@ hintText() {
   if (Get.find<NewMyTabController>().selectedIndex == 0) {
     return 'Type 1-3 nopol';
   } else if (Get.find<NewMyTabController>().selectedIndex == 1) {
+    return 'Type some keyword';
+  } else {
     return 'Type some keyword';
   }
 }

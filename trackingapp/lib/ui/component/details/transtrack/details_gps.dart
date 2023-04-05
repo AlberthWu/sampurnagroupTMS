@@ -53,11 +53,14 @@ class DetailsGPSMap extends StatelessWidget {
                 ..add(Factory<VerticalDragGestureRecognizer>(
                     () => VerticalDragGestureRecognizer())),
               initialCameraPosition: CameraPosition(
-                  target: LatLng(detailData.lat, detailData.lng), zoom: 15),
+                  target: LatLng(
+                      detailData.lat.toDouble(), detailData.lng.toDouble()),
+                  zoom: 15),
               markers: {
                   Marker(
                     markerId: MarkerId(detailData.id.toString() + 'details'),
-                    position: LatLng(detailData.lat, detailData.lng),
+                    position: LatLng(
+                        detailData.lat.toDouble(), detailData.lng.toDouble()),
                   )
                 })
           : const Center(

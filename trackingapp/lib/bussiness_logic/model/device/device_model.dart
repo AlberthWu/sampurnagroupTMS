@@ -46,13 +46,14 @@ class Items {
       engineHours;
   late dynamic totalDistance;
   late bool? engineStatus;
-  late double lat, lng;
+  late num lat, lng;
   late IconColors iconColors;
   late Iconss icon;
   late DriverData driverData;
   late List<Sensors> sensors;
   late List<Tail> tail;
   late List<Services> services;
+  late bool selected;
 
   Items(
       this.id,
@@ -87,7 +88,8 @@ class Items {
       this.driverData,
       this.sensors,
       this.tail,
-      this.services);
+      this.services,
+      this.selected);
 
   Items.fromJSON(JSON json) {
     id = json['id'];
@@ -128,6 +130,7 @@ class Items {
     services = json['services'] == null
         ? []
         : (json['services'] as List).map((e) => Services.fromJSON(e)).toList();
+    selected = false;
   }
 }
 

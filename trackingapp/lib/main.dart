@@ -18,8 +18,9 @@ void main() async {
   Get.put(DeviceController());
   Get.put(GeofenceController());
   Get.put(GPSControllerDevice());
-
+  // Get.put(DevicesController);
   Get.lazyPut(() => DevicesController());
+  Get.put(NewMyTabController);
   // Get.lazyPut(() => DeviceController());
   // Get.lazyPut(() => EventsController());
   runApp(const MyApp());

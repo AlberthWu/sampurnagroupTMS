@@ -44,7 +44,7 @@ class Data {
   late CurrentUtilisasiStatus? currentUtilisasiStatus;
   late TotalkmToday totalkmToday;
   late CurrentStatusVehicle? currentStatusVehicle;
-  late RxBool selected;
+  late bool selected;
 
   Data(
       this.altitude,
@@ -129,7 +129,7 @@ class Data {
     totalkmMtd = TotalKM.fromJSON(json['totalkm_mtd']);
     totalkmToday = TotalkmToday.fromJSON(json['totalkm_today']);
     totalkmYtd = TotalKM.fromJSON(json['totalkm_ytd']);
-    selected = false.obs;
+    selected = false;
   }
 }
 

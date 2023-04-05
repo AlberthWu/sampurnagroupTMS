@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackingapp/bussiness_logic/controller/geofence/geofence_controller.dart';
+import 'package:trackingapp/ui_logic/loading/get_position.dart';
 
 class GeofenceGPSMap extends StatelessWidget {
   GeofenceGPSMap({super.key});
@@ -16,9 +17,7 @@ class GeofenceGPSMap extends StatelessWidget {
       width: Get.width,
       child: Obx(
         () => (Get.find<GeofenceController>().isLoading.value)
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const LoadingGetPosition()
             : GoogleMap(
                 gestureRecognizers: Set()
                   ..add(Factory<PanGestureRecognizer>(
@@ -28,7 +27,9 @@ class GeofenceGPSMap extends StatelessWidget {
                   ..add(Factory<TapGestureRecognizer>(
                       () => TapGestureRecognizer()))
                   ..add(Factory<VerticalDragGestureRecognizer>(
-                      () => VerticalDragGestureRecognizer())),
+                      () => VerticalDragGestureRecognizer()))
+                  ..add(Factory<OneSequenceGestureRecognizer>(
+                      () => new EagerGestureRecognizer())),
                 initialCameraPosition: const CameraPosition(
                     target: LatLng(-6.3263292, 106.603353), zoom: 18),
                 polygons: Get.find<GeofenceController>().polygon,

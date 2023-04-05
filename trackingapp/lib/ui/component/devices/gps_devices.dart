@@ -53,8 +53,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/devices_controller.dart';
 import 'package:trackingapp/bussiness_logic/model/device/device_easygo_model.dart';
+import 'package:trackingapp/ui/pages/route_device.dart';
+import 'package:trackingapp/ui_logic/loading/get_position.dart';
+import 'package:trackingapp/utils/style.dart';
 
 class GPSDevices extends StatefulWidget {
   const GPSDevices({super.key});
@@ -78,12 +82,17 @@ class _GPSDevicesState extends State<GPSDevices> {
   List<NewPosisi> itemsEasyGo = Get.find<DevicesController>().items;
   List<NewPosisi> itemsTranstrack = Get.find<DevicesController>().items2;
 
+  late CameraPosition newPositionCamera =
+      Get.find<DevicesController>().cameraPosition.value;
+
   @override
   void initState() {
+    Get.reloadAll();
     _managerTranstrack = ClusterManager<NewPosisi>(
         itemsTranstrack, _updateMarkersTranstrack,
-        markerBuilder: _markerBuilder(Colors.blue),
-        stopClusteringZoom: 14,
+        markerBuilder: _markerBuilderTranstrack(Colors.blue),
+        stopClusteringZoom: 12,
+        extraPercent: 0.4,
         levels: [
           1,
           4.25,
@@ -101,8 +110,8 @@ class _GPSDevicesState extends State<GPSDevices> {
         ]);
     _managerEasyGo = ClusterManager<NewPosisi>(
         itemsEasyGo, _updateMarkersEasyGo,
-        markerBuilder: _markerBuilder(Colors.red),
-        stopClusteringZoom: 14,
+        markerBuilder: _markerBuilderEasyGo(Colors.red),
+        stopClusteringZoom: 12,
         levels: [
           1,
           4.25,
@@ -178,36 +187,46 @@ class _GPSDevicesState extends State<GPSDevices> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      mapType: MapType.normal,
-      gestureRecognizers: Set()
-        ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
-        ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
-        ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
-        ..add(Factory<VerticalDragGestureRecognizer>(
-            () => VerticalDragGestureRecognizer()))
-        ..add(Factory<OneSequenceGestureRecognizer>(
-            () => new EagerGestureRecognizer())),
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-        _managerEasyGo.setMapId(controller.mapId);
-        _managerTranstrack.setMapId(controller.mapId);
-      },
-      onTap: (argument) {},
-      onCameraMove: (position) {
-        _managerEasyGo.onCameraMove(position);
-        _managerTranstrack.onCameraMove(position);
-      },
-      onCameraIdle: () {
-        _managerEasyGo.updateMap();
-        _managerTranstrack.updateMap();
-      },
-      markers: markersEasyGo..addAll(markersTranstrack),
-    );
+    return Obx(() => (Get.find<DevicesController>().isLoading.value)
+        ? LoadingGetPosition()
+        : GoogleMap(
+            mapType: MapType.normal,
+            gestureRecognizers: Set()
+              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+              ..add(Factory<ScaleGestureRecognizer>(
+                  () => ScaleGestureRecognizer()))
+              ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+              ..add(Factory<VerticalDragGestureRecognizer>(
+                  () => VerticalDragGestureRecognizer()))
+              ..add(Factory<OneSequenceGestureRecognizer>(
+                  () => new EagerGestureRecognizer())),
+            initialCameraPosition:
+                Get.find<DevicesController>().newCamera.value,
+            onMapCreated: (GoogleMapController controller) {
+              // _controller.complete(controller);
+              _managerEasyGo.setMapId(controller.mapId);
+              _managerTranstrack.setMapId(controller.mapId);
+            },
+            onTap: (argument) {},
+            onCameraMove: (position) {
+              _managerEasyGo.onCameraMove(position);
+              _managerTranstrack.onCameraMove(position);
+            },
+            onCameraIdle: () {
+              _managerEasyGo.updateMap();
+              _managerTranstrack.updateMap();
+            },
+            markers: markersEasyGo..addAll(markersTranstrack),
+          ));
   }
 
-  Future<Marker> Function(Cluster<NewPosisi>) _markerBuilder(Color color) =>
+  Future<void> goToThePosition() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(newPositionCamera));
+  }
+
+  Future<Marker> Function(Cluster<NewPosisi>) _markerBuilderEasyGo(
+          Color color) =>
       (cluster) async {
         return Marker(
           markerId: MarkerId(cluster.getId()),
@@ -216,7 +235,47 @@ class _GPSDevicesState extends State<GPSDevices> {
               text: cluster.isMultiple ? cluster.count.toString() : null),
           infoWindow: cluster.isMultiple
               ? InfoWindow()
-              : InfoWindow(title: cluster.items.first.nopol),
+              : InfoWindow(
+                  title: cluster.items.first.nopol,
+                  onTap: () async {
+                    List<String> data = [];
+                    final String keyword = cluster.items.first.nopol;
+                    if (keyword != '') {
+                      data.add(keyword);
+                      await Get.find<DevicesController>()
+                          .deviceListEasyGoBySearch(data);
+                    }
+                    print(keyword);
+                  },
+                ),
+        );
+      };
+
+  Future<Marker> Function(Cluster<NewPosisi>) _markerBuilderTranstrack(
+          Color color) =>
+      (cluster) async {
+        return Marker(
+          markerId: MarkerId(cluster.getId()),
+          position: cluster.location,
+          icon: await _getMarkerBitmap(cluster.isMultiple ? 125 : 75, color,
+              text: cluster.isMultiple ? cluster.count.toString() : null),
+          infoWindow: cluster.isMultiple
+              ? InfoWindow()
+              : InfoWindow(
+                  title: cluster.items.first.nopol,
+                  onTap: () async {
+                    try {
+                      final keyword = cluster.items.first.nopol;
+                      await Get.find<DevicesController>()
+                          .deviceListTranstrackbySearch(keyword);
+                      // Get.lazyReplace(() =>
+                      //     Get.find<NewMyTabController>().selectedIndex.value ==
+                      //     1);
+                    } catch (e) {}
+
+                    // Get.resetRootNavigator();
+                  },
+                ),
         );
       };
 
@@ -250,17 +309,17 @@ class _GPSDevicesState extends State<GPSDevices> {
   }
 }
 
-class Place with ClusterItem {
-  final String nopol;
-  final LatLng latLng;
+// class Place with ClusterItem {
+//   final String nopol;
+//   final LatLng latLng;
 
-  Place({required this.nopol, required this.latLng});
+//   Place({required this.nopol, required this.latLng});
 
-  @override
-  String toString() {
-    return nopol;
-  }
+//   @override
+//   String toString() {
+//     return nopol;
+//   }
 
-  @override
-  LatLng get location => latLng;
-}
+//   @override
+//   LatLng get location => latLng;
+// }

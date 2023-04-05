@@ -44,6 +44,8 @@ dependencies:
   google_maps_cluster_manager: ^3.0.0+1
   anim_search_bar: ^2.0.3
   dropdown_button2: ^2.0.0
+  shimmer: ^2.0.0
+  flutter_scroll_to_top: ^2.3.0
   # geocoding: ^2.1.0
   # geolocator: ^9.0.2
 

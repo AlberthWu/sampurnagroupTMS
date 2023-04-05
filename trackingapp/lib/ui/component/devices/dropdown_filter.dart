@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trackingapp/bussiness_logic/controller/devices/devices_controller.dart';
+import 'package:trackingapp/ui/component/devices/list_device_easy_go.dart';
 import 'package:trackingapp/ui/pages/route_device.dart';
 
 class DropdownFilter extends GetView<DevicesController> {
@@ -92,8 +93,10 @@ class FilterItems {
           Get.reload();
           break;
         case FilterItems.driving:
+          ListDeviceEasyGo();
           break;
         case FilterItems.parking:
+          ListDeviceEasyGo();
           break;
       }
     } else if (Get.find<NewMyTabController>().selectedIndex == 1) {
@@ -150,6 +153,39 @@ itemsList() {
       ], padding: const EdgeInsets.only(left: 16, right: 16)),
     );
   } else if (Get.find<NewMyTabController>().selectedIndex == 1) {
+    return DropdownButton2(
+      customButton: const Padding(
+        padding: EdgeInsets.only(right: 24.0, top: 24, bottom: 24),
+        child: Icon(
+          Icons.list,
+          size: 20,
+          color: Colors.black,
+        ),
+      ),
+      items: [
+        ...FilterItems.menuFilterTranstrack.map(
+          (e) => DropdownMenuItem<FilterItem>(
+            child: FilterItems.buildItem(e),
+            value: e,
+          ),
+        )
+      ],
+      onChanged: (value) {
+        FilterItems.onChanged(_, value as FilterItem);
+      },
+      dropdownStyleData: DropdownStyleData(
+          width: 130,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            color: Colors.blueGrey,
+          ),
+          elevation: 1,
+          offset: const Offset(10, 8)),
+      menuItemStyleData: MenuItemStyleData(customHeights: [
+        ...List<double>.filled(FilterItems.menuFilterTranstrack.length, 48)
+      ], padding: const EdgeInsets.only(left: 16, right: 16)),
+    );
+  } else {
     return DropdownButton2(
       customButton: const Padding(
         padding: EdgeInsets.only(right: 24.0, top: 24, bottom: 24),

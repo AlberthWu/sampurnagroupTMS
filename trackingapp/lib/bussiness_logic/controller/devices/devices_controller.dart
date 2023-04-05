@@ -32,6 +32,9 @@ class DevicesController extends GetxController {
   late ClusterManager clusterManager;
   Completer<GoogleMapController> controllerGPS = Completer();
   late ClusterManager manager;
+  late Rx<CameraPosition> cameraPosition;
+  late Rx<CameraPosition> newCamera = Rx<CameraPosition>(
+      CameraPosition(target: LatLng(-6.3263292, 106.603353), zoom: 9));
   // Set<Marker> markers = Set();
 
   RxList<NewPosisi> items = RxList();
@@ -65,7 +68,7 @@ class DevicesController extends GetxController {
       listDeviceEasyGo.value = result;
       for (var i in listDeviceEasyGo.value!.data) {
         dataEasyGo.add(i);
-        items.add(NewPosisi(i.nopol, LatLng(i.lat, i.lon)));
+        items.add(NewPosisi(i.nopol, LatLng(i.lat, i.lon), i.selected));
         // return data;
       }
       return listDeviceEasyGo;
@@ -93,7 +96,8 @@ class DevicesController extends GetxController {
       for (var i in listDeviceTranstrack.value) {
         for (var j in i.items) {
           itemsModel.add(j);
-          items2.add(NewPosisi(j.name, LatLng(j.lat, j.lng)));
+          items2.add(NewPosisi(
+              j.name, LatLng(j.lat.toDouble(), j.lng.toDouble()), j.selected));
         }
       }
       // print(items2);
@@ -103,6 +107,15 @@ class DevicesController extends GetxController {
       isError(true);
       throw Exception(e);
     }
+  }
+
+  Future<void> focusToPosition() async {
+    final GoogleMapController controller = await controllerGPS.future;
+    newCamera.value = cameraPosition as CameraPosition;
+    print(cameraPosition);
+    print('knckd' + cameraPosition.toString());
+    return controller
+        .animateCamera(CameraUpdate.newCameraPosition(newCamera.value));
   }
 
   // ClusterManager initClusterManager() {
@@ -209,7 +222,7 @@ class DevicesController extends GetxController {
       listDeviceEasyGo.value = result;
       for (var i in listDeviceEasyGo.value!.data) {
         dataEasyGo.add(i);
-        items.add(NewPosisi(i.nopol, LatLng(i.lat, i.lon)));
+        items.add(NewPosisi(i.nopol, LatLng(i.lat, i.lon), i.selected));
         // return data;
       }
       return listDeviceEasyGo;
@@ -231,7 +244,8 @@ class DevicesController extends GetxController {
       for (var i in listDeviceTranstrack.value) {
         for (var j in i.items) {
           itemsModel.add(j);
-          items2.add(NewPosisi(j.name, LatLng(j.lat, j.lng)));
+          items2.add(NewPosisi(
+              j.name, LatLng(j.lat.toDouble(), j.lng.toDouble()), j.selected));
         }
       }
       // print(items2);
@@ -247,8 +261,9 @@ class DevicesController extends GetxController {
 class NewPosisi with ClusterItem {
   final String nopol;
   final LatLng posisi;
+  final bool selected;
 
-  NewPosisi(this.nopol, this.posisi);
+  NewPosisi(this.nopol, this.posisi, this.selected);
 
   @override
   String toString() {
