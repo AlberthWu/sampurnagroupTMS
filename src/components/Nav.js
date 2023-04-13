@@ -2,7 +2,7 @@
 // import { Button } from "primereact/button";
 // import { Menu } from "primereact/menu";
 import { MegaMenu } from "primereact/megamenu";
-import React, { Component } from "react";
+import React from "react";
 // import React, { useState } from "react";
 
 // const goToHome = () => {
@@ -86,10 +86,46 @@ const Navigation = () => {
     },
     {
       label: "GPS",
-      icon: "pi pi-map",
-      command: () => {
-        window.location.href = "/gps";
-      },
+      items: [
+        [
+          {
+            label: "Maps",
+            items: [
+              {
+                label: "Transtrack",
+                command: () => {
+                  window.location.href = "/transtrack";
+                },
+              },
+              {
+                label: "EasyGo",
+                command: () => {
+                  window.location.href = "/easygo";
+                },
+              },
+            ],
+          },
+        ],
+        [
+          {
+            label: "Geofence",
+            items: [
+              {
+                label: "Transtrack",
+                command: () => {
+                  window.location.href = "/transtrack";
+                },
+              },
+              {
+                label: "EasyGo",
+                command: () => {
+                  window.location.href = "/easygo";
+                },
+              },
+            ],
+          },
+        ],
+      ],
     },
     {
       label: "Login",
@@ -102,7 +138,7 @@ const Navigation = () => {
 
   return (
     <div className="d-flex w-full pb-3">
-      <div className="card" style={{ backgroundcolor: "#DBF9FC" }}>
+      <div className="card" style={{ backgroundcolor: "white" }}>
         <MegaMenu model={items} />
       </div>
     </div>

@@ -648,146 +648,146 @@
 
 // export default Login;
 
-// // // import React, { useState } from "react";
-// // // import axios from "axios";
-// // // import { InputText } from "primereact/inputtext";
-// // // import { Button } from "primereact/button";
-// // // import { useHistory } from "react-router-dom";
-// // // import { useAtom } from "hookstate";
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { InputText } from "primereact/inputtext";
+// import { Button } from "primereact/button";
+// import { useHistory } from "react-router-dom";
+// import { useAtom } from "hookstate";
 
-// // // const Login = () => {
-// // //   const [email, setemail] = useState("");
-// // //   const [password, setPassword] = useState("");
-// // //   const history = useHistory();
-// // //   const authState = useAtom(authAtom);
+// const Login = () => {
+//   const [email, setemail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const history = useHistory();
+//   const authState = useAtom(authAtom);
 
-// // //   const handleLogin = async () => {
-// // //     try {
-// // //       const response = await axios.post(
-// // //         "https://api.sampurna-group.com/v2/users/login",
-// // //         { email, password },
-// // //         { withCredentials: true }
-// // //       );
-// // //       if (response.status === 200) {
-// // //         authState.set({ ...authState.get(), isLoggedIn: true });
-// // //         history.push("/");
-// // //       }
-// // //     } catch (error) {
-// // //       console.error(error);
-// // //     }
-// // //   };
+//   const handleLogin = async () => {
+//     try {
+//       const response = await axios.post(
+//         "https://api.sampurna-group.com/v2/users/login",
+//         { email, password },
+//         { withCredentials: true }
+//       );
+//       if (response.status === 200) {
+//         authState.set({ ...authState.get(), isLoggedIn: true });
+//         history.push("/");
+//       }
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
 
-// // //   return (
-// // //     <div>
-// // //       <div className="p-inputgroup">
-// // //         <span className="p-inputgroup-addon">
-// // //           <i className="pi pi-user"></i>
-// // //         </span>
-// // //         <InputText
-// // //           placeholder="email"
-// // //           value={email}
-// // //           onChange={(e) => setemail(e.target.value)}
-// // //         />
-// // //       </div>
-// // //       <div className="p-inputgroup">
-// // //         <span className="p-inputgroup-addon">
-// // //           <i className="pi pi-lock"></i>
-// // //         </span>
-// // //         <InputText
-// // //           type="password"
-// // //           placeholder="Password"
-// // //           value={password}
-// // //           onChange={(e) => setPassword(e.target.value)}
-// // //         />
-// // //       </div>
-// // //       <Button label="Login" icon="pi pi-sign-in" onClick={handleLogin} />
-// // //     </div>
-// // //   );
-// // // };
+//   return (
+//     <div>
+//       <div className="p-inputgroup">
+//         <span className="p-inputgroup-addon">
+//           <i className="pi pi-user"></i>
+//         </span>
+//         <InputText
+//           placeholder="email"
+//           value={email}
+//           onChange={(e) => setemail(e.target.value)}
+//         />
+//       </div>
+//       <div className="p-inputgroup">
+//         <span className="p-inputgroup-addon">
+//           <i className="pi pi-lock"></i>
+//         </span>
+//         <InputText
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//       </div>
+//       <Button label="Login" icon="pi pi-sign-in" onClick={handleLogin} />
+//     </div>
+//   );
+// };
 
-// // // export default Login;
+// export default Login;
 
-// // import React, { useState } from "react";
-// // import { Button } from "primereact/button";
-// // import { InputText } from "primereact/inputtext";
-// // import { Card } from "primereact/card";
-// // import { Divider } from "primereact/divider";
-// // import { useHookstate } from "@hookstate/core";
+// import React, { useState } from "react";
+// import { Button } from "primereact/button";
+// import { InputText } from "primereact/inputtext";
+// import { Card } from "primereact/card";
+// import { Divider } from "primereact/divider";
+// import { useHookstate } from "@hookstate/core";
 
-// // const Login = () => {
-// //   const email = useHookstate("");
-// //   const password = useHookstate("");
-// //   const cookies = useHookstate(document.cookie);
+// const Login = () => {
+//   const email = useHookstate("");
+//   const password = useHookstate("");
+//   const cookies = useHookstate(document.cookie);
 
-// //   const handleLogin = async () => {
-// //     const response = await fetch(
-// //       "https://api.sampurna-group.com/v2/users/login",
-// //       {
-// //         method: "POST",
-// //         body: JSON.stringify({
-// //           email: email.value,
-// //           password: password.value,
-// //         }),
-// //         headers: {
-// //           "Content-Type": "application/json",
-// //         },
-// //       }
-// //     );
+//   const handleLogin = async () => {
+//     const response = await fetch(
+//       "https://api.sampurna-group.com/v2/users/login",
+//       {
+//         method: "POST",
+//         body: JSON.stringify({
+//           email: email.value,
+//           password: password.value,
+//         }),
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
 
-// //     if (response.ok) {
-// //       const setCookie = response.headers.get("set-cookie");
-// //       cookies.set(setCookie);
-// //       console.log("Logged in successfully!");
-// //       console.log(response.headers);
-// //     } else {
-// //       console.error("Login failed!");
-// //     }
-// //   };
+//     if (response.ok) {
+//       const setCookie = response.headers.get("set-cookie");
+//       cookies.set(setCookie);
+//       console.log("Logged in successfully!");
+//       console.log(response.headers);
+//     } else {
+//       console.error("Login failed!");
+//     }
+//   };
 
-// //   const handleLogout = async () => {
-// //     await fetch("https://api.sampurna-group.com/v2/users/logout", {
-// //       method: "POST",
-// //       headers: {
-// //         "Content-Type": "application/json",
-// //         Cookie: cookies.get(),
-// //       },
-// //     });
+//   const handleLogout = async () => {
+//     await fetch("https://api.sampurna-group.com/v2/users/logout", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Cookie: cookies.get(),
+//       },
+//     });
 
-// //     cookies.set("");
-// //     console.log("Logged out successfully!");
-// //   };
+//     cookies.set("");
+//     console.log("Logged out successfully!");
+//   };
 
-// //   return (
-// //     <div className="p-d-flex p-jc-center p-mt-5">
-// //       <Card title="Login">
-// //         <div className="p-fluid">
-// //           <div className="p-field">
-// //             <label htmlFor="email">email</label>
-// //             <InputText
-// //               id="email"
-// //               type="text"
-// //               value={email.value}
-// //               onChange={(e) => email.set(e.target.value)}
-// //             />
-// //           </div>
-// //           <div className="p-field">
-// //             <label htmlFor="password">Password</label>
-// //             <InputText
-// //               id="password"
-// //               type="password"
-// //               value={password.value}
-// //               onChange={(e) => password.set(e.target.value)}
-// //             />
-// //           </div>
-// //         </div>
-// //         <Divider />
-// //         <div className="p-d-flex p-jc-between">
-// //           <Button label="Login" onClick={handleLogin} />
-// //           <Button label="Logout" onClick={handleLogout} />
-// //         </div>
-// //       </Card>
-// //     </div>
-// //   );
-// // };
+//   return (
+//     <div className="p-d-flex p-jc-center p-mt-5">
+//       <Card title="Login">
+//         <div className="p-fluid">
+//           <div className="p-field">
+//             <label htmlFor="email">email</label>
+//             <InputText
+//               id="email"
+//               type="text"
+//               value={email.value}
+//               onChange={(e) => email.set(e.target.value)}
+//             />
+//           </div>
+//           <div className="p-field">
+//             <label htmlFor="password">Password</label>
+//             <InputText
+//               id="password"
+//               type="password"
+//               value={password.value}
+//               onChange={(e) => password.set(e.target.value)}
+//             />
+//           </div>
+//         </div>
+//         <Divider />
+//         <div className="p-d-flex p-jc-between">
+//           <Button label="Login" onClick={handleLogin} />
+//           <Button label="Logout" onClick={handleLogout} />
+//         </div>
+//       </Card>
+//     </div>
+//   );
+// };
 
-// // export default Login;
+// export default Login;
